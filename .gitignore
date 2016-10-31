@@ -1,5 +1,6 @@
 # Database credentials
 src/firebaseCredentials.js
+
 # OSX
 #
 .DS_Store
