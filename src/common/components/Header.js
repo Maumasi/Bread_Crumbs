@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 
 const styles = {
   headerTitle: {
@@ -14,7 +14,8 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,
-    height: 60,
+    paddingTop: 65,
+    // height: 80,
     // backgroundColor: '#000',
     elevation: 2,
     position: 'relative',
@@ -22,14 +23,14 @@ const styles = {
 };
 
 const Header = (props) => {
-  const {title} = props;
-  const {headerTitle, headerWrapper} = styles;
+  const { title, textTheme } = props;
+  const { headerTitle, headerWrapper } = styles;
 
   return (
-    <View style={headerWrapper} >
-      <Text style={headerTitle}>{title}</Text>
+    <View style={ headerWrapper } >
+      <Text style={ [headerTitle, textTheme] }>{ title }</Text>
     </View>
   );
 };
 
-export {Header};
+export { Header };

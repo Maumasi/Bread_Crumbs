@@ -1,13 +1,10 @@
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase';
-import {
-  View,
-  Text,
-} from 'react-native';
 
 import firebaseCredentials from 'Bread_Crumbs/src/firebaseCredentials.js';
-import {Header} from 'Bread_Crumbs/src/common/';
+
+import { LoginScreen } from 'Bread_Crumbs/src/views/index.js';
 
 class App extends Component {
 
@@ -18,7 +15,9 @@ class App extends Component {
 
   // app view
   render() {
-    return <Header title={'Bread Crumbs'}/>;
+    return (
+      <LoginScreen/>
+    );
   }
 }// class
 
