@@ -38,11 +38,11 @@ const themes = {
   // icon img: 79pt by 79pt
   logoIcon: require('Bread_Crumbs/src/resources/bread_crumbs_icon_79x79pt.png'),
   loginIcon: {
-    width: 120,
-    height: 120,
+    width: 160,
+    height: 160,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginBottom: 30,
+    // marginBottom: 30,
   },
 
   // login form fields
@@ -79,7 +79,22 @@ const themes = {
     letterSpacing: 1,
     fontSize: 20,
     fontFamily: 'Futura-Medium',
-    // height: 45,
+  },
+
+  // error message
+  errorStyles: {
+    color: 'rgb(238, 100, 86)',
+    textAlign: 'center',
+    height: 25,
+    fontSize: 20,
+    fontWeight: 'bold',
+    opacity: 0.8,
+  },
+
+  // loading message text
+  loadingMessage: {
+    color: 'rgb(7, 55, 89)',
+    opacity: 0.8,
   },
 };
 

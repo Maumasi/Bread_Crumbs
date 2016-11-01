@@ -12,10 +12,10 @@ const styles = {
 };
 
 const LoadingSpinner = (props) => {
-  const { size, color } = props;
+  const { size, color, style } = props;
 
   return (
-    <View style={ styles.loadingSpiner }>
+    <View style={ [styles.loadingSpiner, style] }>
       <ActivityIndicator
         size={ size || 'large' }
         color={ color }

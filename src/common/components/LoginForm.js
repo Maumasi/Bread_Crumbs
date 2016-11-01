@@ -7,19 +7,28 @@ import { Button,
   Section,
   Input,
   LoadingSpinner,
+  Header,
 } from 'Bread_Crumbs/src/common/';
 
 // themes
 import themes from 'Bread_Crumbs/src/stylesheets/themes';
-const { loginInput, boxShadow } = themes;
+const { loginInput, boxShadow, errorStyles, loadingMessage } = themes;
+
+const styles = {
+  spinner: {
+    opacity: 0.6,
+  },
+  credentialsSpinner: {
+    marginBottom: 20,
+  },
+};
 
 class LoginForm extends Component {
 
   state = {
     email: '',
     password: '',
-    creatingUser: '',
-    createUserError: '',
+    error: '',
     loading: false,
   };
 
@@ -27,8 +36,7 @@ class LoginForm extends Component {
   onButtonPress = () => {
     const { email, password } = this.state;
     this.setState({
-      creatingUser: '',
-      createUserError: '',
+      error: '',
       loading: true,
     });
 
@@ -45,15 +53,15 @@ class LoginForm extends Component {
     this.setState({
       email: '',
       password: '',
-      creatingUser: 'Creating new user account',
-      createUserError: '',
+      error: '',
       loading: false,
     });
   }
 
   onLoginFail() {
     this.setState({
-      createUserError: 'Failed to sign in and/or create user account',
+      password: '',
+      error: 'Email and password did not match',
       loading: false,
     });
   }
@@ -64,18 +72,56 @@ class LoginForm extends Component {
     // when trying to login show spinner
     if (this.state.loading) {
       result = (
-        <LoadingSpinner
-          color={ 'rgb(255, 255, 255)' }
-        />
+        <Section>
+          <Header
+            wrapperTheme={ styles.credentialsSpinner }
+            textTheme={ loadingMessage }
+            title={ 'Checking Credentials' }
+          />
+
+          <LoadingSpinner color={ '#FFF' } />
+        </Section>
       );
 
     // no action taken, show button
     } else {
       result = (
-        <Button
-          onPress={ this.onButtonPress.bind(this) }
-          buttonTitle={ 'Log In' }
-        />
+        <Section>
+
+          <Text style={ errorStyles }>
+            { this.state.error }
+          </Text>
+
+          <Input
+            lable={ 'Email' }
+            placeholder={ 'example@mail.com' }
+            value={ this.state.email }
+            onChangeText={ (email) => this.setState({ email }) }
+            autoFocus
+            returnKeyType={ 'next' }
+            returnKeyLabel={ 'next' }
+            autoCapitalize={ 'none' }
+            keyboardType={ 'email-address' }
+          />
+
+          <Input
+            lable={ 'Password' }
+            placeholder={ 'password123' }
+            value={ this.state.password }
+            onChangeText={ (password) => this.setState({ password }) }
+            secureTextEntry
+            returnKeyType={ 'go' }
+            returnKeyLabel={ 'go' }
+            autoCapitalize={ 'none' }
+            onSubmitEditing={ this.onButtonPress.bind(this) }
+          />
+
+          <Button
+            onPress={ this.onButtonPress.bind(this) }
+            buttonTitle={ 'Log In' }
+          />
+
+        </Section>
       );
     }
 
@@ -83,45 +129,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    return (
-      <Section>
-
-        <Text>
-          { this.state.createUserError }
-        </Text>
-        <Text style={{ height: 20, flex: 1 }}>
-          { this.state.creatingUser }
-        </Text>
-
-        <Input
-          lable={ 'Email' }
-          placeholder={ 'example@mail.com' }
-          value={ this.state.email }
-          onChangeText={ (email) => this.setState({ email }) }
-          autoFocus
-          returnKeyType={ 'next' }
-          returnKeyLabel={ 'next' }
-          autoCapitalize={ 'none' }
-          keyboardType={ 'email-address' }
-        />
-
-        <Input
-          lable={ 'Password' }
-          placeholder={ 'password123' }
-          value={ this.state.password }
-          onChangeText={ (password) => this.setState({ password }) }
-          secureTextEntry
-          returnKeyType={ 'go' }
-          returnKeyLabel={ 'go' }
-          autoCapitalize={ 'none' }
-          onSubmitEditing={ this.onButtonPress.bind(this) }
-        />
-
-        { this.renderButton() }
-
-      </Section>
-
-    );
+    return this.renderButton();
   }
 }
 

@@ -20,8 +20,6 @@ const styles = {
   },
   wrapper: {
     flexDirection: 'row',
-    // flex: 1,
-    // height: 40,
     alignItems: 'center',
   },
 };
@@ -44,15 +42,15 @@ const Input = (props) => {
   } = props;
 
   return (
-    <View style={[loginInput, boxShadow, wrapper]}>
-      <Text style={input}>{ lable }</Text>
+    <View style={ [loginInput, boxShadow, wrapper] }>
+      <Text style={ input }>{ lable }</Text>
       <TextInput
         placeholder={ placeholder }
         autoCorrect={ false }
         style={ [lableStyle] }
         value={ value }
         onChangeText={ onChangeText }
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={ secureTextEntry }
         autoFocus={ autoFocus }
         autoCapitalize={ autoCapitalize }
         returnKeyType={ returnKeyType }

@@ -23,11 +23,11 @@ const styles = {
 };
 
 const Header = (props) => {
-  const { title, textTheme } = props;
+  const { title, textTheme, wrapperTheme } = props;
   const { headerTitle, headerWrapper } = styles;
 
   return (
-    <View style={ headerWrapper } >
+    <View style={ [headerWrapper, wrapperTheme] } >
       <Text style={ [headerTitle, textTheme] }>{ title }</Text>
     </View>
   );
