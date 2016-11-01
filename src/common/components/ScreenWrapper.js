@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View } from 'react-native';
 
 const styles = {
   wrapper: {
@@ -17,7 +17,6 @@ const styles = {
 const { wrapper } = styles;
 const ScreenWrapper = (props) => {
 
-  StatusBar.setBarStyle('light-content');
   const { children, theme } = props;
   return (
    <View style={ [wrapper, theme] }>

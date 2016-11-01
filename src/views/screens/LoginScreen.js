@@ -1,27 +1,30 @@
 
 // login screen
 
-import React from 'react';
-import { Image } from 'react-native';
-import { Header, ScreenWrapper, SectionItem } from 'Bread_Crumbs/src/common/';
+import React, { Component } from 'react';
+import { Image, StatusBar } from 'react-native';
+import { Header, ScreenWrapper, LoginForm } from 'Bread_Crumbs/src/common/';
 
 // themes
 import themes from 'Bread_Crumbs/src/stylesheets/themes';
-const { bgGreen, textDarkBrown } = themes;
+const { bgGreen, textDarkBrown, loginIcon, logoIcon } = themes;
+StatusBar.setBarStyle('light-content');
 
-// logo
-const logo = require('Bread_Crumbs/src/resources/bread_crumbs_logo.png');
+class LoginScreen extends Component {
 
-const LoginScreen = () => {
-  return (
-    <ScreenWrapper theme={ bgGreen }>
-      <Header textTheme={ textDarkBrown } title={ 'Bread Crumbs' }/>
-      <Image
-        style={{ width: 30, flex: 1, height: 40 }}
-        source={ logo }
-      />
-    </ScreenWrapper>
-  );
-};
+  render() {
+    return (
+      <ScreenWrapper theme={ bgGreen }>
+        <Header textTheme={ textDarkBrown } title={ 'Bread Crumbs' }/>
+
+        <Image style={ loginIcon } source={ logoIcon } />
+
+        <LoginForm />
+
+
+      </ScreenWrapper>
+    );
+  }
+}
 
 export { LoginScreen };
