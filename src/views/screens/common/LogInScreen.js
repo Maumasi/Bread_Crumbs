@@ -1,12 +1,16 @@
-
 // login screen
 
 import React, { Component } from 'react';
 import { Image, StatusBar } from 'react-native';
-import { Header, ScreenWrapper, LoginForm } from 'Bread_Crumbs/src/common/';
+
+// components
+import { Header, ScreenWrapper } from 'Bread_Crumbs/src/views/components/';
+
+// partials
+import { LogInForm } from 'Bread_Crumbs/src/views/partials/';
 
 // themes
-import themes from 'Bread_Crumbs/src/stylesheets/themes';
+import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { bgGreen, loginIcon, logoIcon, loginText } = themes;
 StatusBar.setBarStyle('light-content');
 
@@ -16,7 +20,7 @@ const styles = {
   },
 };
 
-class LoginScreen extends Component {
+class LogInScreen extends Component {
 
   render() {
     return (
@@ -25,11 +29,11 @@ class LoginScreen extends Component {
 
         <Image style={ loginIcon } source={ logoIcon } />
 
-        <LoginForm />
+        <LogInForm />
 
       </ScreenWrapper>
     );
   }
 }
 
-export { LoginScreen };
+export { LogInScreen };

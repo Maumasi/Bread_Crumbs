@@ -1,11 +1,11 @@
-// login screen
+// log out loading screen
 
 import React, { Component } from 'react';
 import { Image, StatusBar } from 'react-native';
-import { Header, ScreenWrapper, LoadingSpinner } from 'Bread_Crumbs/src/common/';
+import { Header, ScreenWrapper, LoadingSpinner } from 'Bread_Crumbs/src/views/components/';
 
 // themes
-import themes from 'Bread_Crumbs/src/stylesheets/themes';
+import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { bgGreen, textDarkBrown, loginIcon, logoIcon } = themes;
 StatusBar.setBarStyle('light-content');
 

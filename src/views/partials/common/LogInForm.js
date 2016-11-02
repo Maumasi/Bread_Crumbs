@@ -8,10 +8,10 @@ import { Button,
   Input,
   LoadingSpinner,
   Header,
-} from 'Bread_Crumbs/src/common/';
+} from 'Bread_Crumbs/src/views/components/';
 
 // themes
-import themes from 'Bread_Crumbs/src/stylesheets/themes';
+import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { loginInput, boxShadow, errorStyles, loadingMessage } = themes;
 
 const styles = {
@@ -23,7 +23,7 @@ const styles = {
   },
 };
 
-class LoginForm extends Component {
+class LogInForm extends Component {
 
   state = {
     email: '',
@@ -133,4 +133,4 @@ class LoginForm extends Component {
   }
 }
 
-export { LoginForm };
+export { LogInForm };

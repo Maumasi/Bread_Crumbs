@@ -3,7 +3,7 @@ import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 
 // themes
-import themes from 'Bread_Crumbs/src/stylesheets/themes';
+import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { loginInput, boxShadow } = themes;
 
 const styles = {

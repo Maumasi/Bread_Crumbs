@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 // db credentials
-import firebaseCredentials from 'Bread_Crumbs/src/firebaseCredentials';
+import firebaseCredentials from 'Bread_Crumbs/src/models/db/firebaseCredentials';
 
 // components
-import { LoadingSpinner, Button } from 'Bread_Crumbs/src/common/';
+import { LoadingSpinner, Button } from 'Bread_Crumbs/src/views/components/';
 
 // app screens
-import { LoginScreen, AppLoadingScreen } from 'Bread_Crumbs/src/views/';
+import { LogInScreen, AppLoadingScreen } from 'Bread_Crumbs/src/views/screens/';
 
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
 
       // show login screen
       case false:
-        result = <LoginScreen/>;
+        result = <LogInScreen/>;
         break;
 
       // show user logged in

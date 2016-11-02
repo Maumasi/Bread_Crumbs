@@ -36,7 +36,7 @@ const themes = {
 
   // login screen icon
   // icon img: 79pt by 79pt
-  logoIcon: require('Bread_Crumbs/src/resources/bread_crumbs_icon_79x79pt.png'),
+  logoIcon: require('Bread_Crumbs/src/views/resources/bread_crumbs_icon_79x79pt.png'),
   loginIcon: {
     width: 160,
     height: 160,
@@ -93,8 +93,8 @@ const themes = {
 
   // loading message text
   loadingMessage: {
-    color: 'rgb(7, 55, 89)',
-    opacity: 0.8,
+    color: 'rgba(0, 0, 0, 0.5)',
+    fontSize: 20,
   },
 };
 
