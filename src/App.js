@@ -9,7 +9,7 @@ import firebaseCredentials from 'Bread_Crumbs/src/models/db/firebaseCredentials'
 import { LoadingSpinner, Button } from 'Bread_Crumbs/src/views/components/';
 
 // app screens
-import { LogInScreen, AppLoadingScreen } from 'Bread_Crumbs/src/views/screens/';
+import { LogInScreen, AppLoadingScreen, LogOutLoadingScreen } from 'Bread_Crumbs/src/views/screens/';
 
 
 class App extends Component {
@@ -39,7 +39,14 @@ class App extends Component {
 
       // show user logged in
       case true:
-        result = <Button onPress={ () => firebase.auth().signOut() } buttonTitle={ 'Log Out' } />;
+        result = <Button onPress={ () => {
+          firebase.auth().signOut();
+          this.setState({ isLoggedIn: 'logOutPressed' });
+        } } buttonTitle={ 'Log Out' } />;
+        break;
+
+      case 'logOutPressed':
+        result = <LogOutLoadingScreen />;
         break;
 
       // show spinner while app connects to firebase

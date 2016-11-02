@@ -19,13 +19,16 @@ class AppLoadingScreen extends Component {
 
   render() {
     return (
-      <ScreenWrapper theme={ bgGreen }>
-        <Header textTheme={ loadingMessage } title={ 'Opening Bread Crumbs' }/>
+      <ScreenWrapper>
 
-        <Image style={ [loginIcon, styles.spinner] } source={ logoIcon } />
+        <ScreenWrapper theme={ bgGreen }>
+          <Header textTheme={ loadingMessage } title={ 'Opening Bread Crumbs' }/>
+          <Image style={ [loginIcon, styles.spinner] } source={ logoIcon } />
+        </ScreenWrapper>
 
-        <LoadingSpinner color={ '#FFF' } />
-
+        <ScreenWrapper>
+          <LoadingSpinner color={ '#FFF' } />
+        </ScreenWrapper>
       </ScreenWrapper>
     );
   } // render

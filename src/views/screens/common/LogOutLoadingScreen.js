@@ -13,14 +13,15 @@ class LogOutLoadingScreen extends Component {
 
   render() {
     return (
-      <ScreenWrapper theme={ bgGreen }>
-        <Header textTheme={ textDarkBrown } title={ 'Logging out of Bread Crumbs' }/>
+      <ScreenWrapper>
+        <ScreenWrapper theme={ bgGreen }>
+          <Header textTheme={ textDarkBrown } title={ 'Logging out of Bread Crumbs' }/>
+          <Image style={ loginIcon } source={ logoIcon } />
+        </ScreenWrapper>
 
-        <Image style={ loginIcon } source={ logoIcon } />
-
-        <LoadingSpinner />
-
-
+        <ScreenWrapper>
+          <LoadingSpinner color={ '#FFF' } />
+        </ScreenWrapper>
       </ScreenWrapper>
     );
   }
