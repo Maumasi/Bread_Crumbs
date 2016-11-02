@@ -1,6 +1,10 @@
 
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import firebase from 'firebase';
+
+import reducers from 'Bread_Crumbs/src/controllers/reducers/';
 
 // db credentials
 import firebaseCredentials from 'Bread_Crumbs/src/models/db/firebaseCredentials';
@@ -59,7 +63,11 @@ class App extends Component {
 
   // app view
   render() {
-    return this.router();
+    return (
+      <Provider store={ createStore(reducers) } >
+        { this.router() }
+      </Provider>
+  );
   }
 }// class
 

@@ -8,3 +8,4 @@ export * from 'Bread_Crumbs/src/views/components/common/SectionItem';
 export * from 'Bread_Crumbs/src/views/components/common/Button';
 export * from 'Bread_Crumbs/src/views/components/common/Input';
 export * from 'Bread_Crumbs/src/views/components/common/LoadingSpinner';
+export * from 'Bread_Crumbs/src/views/components/common/ErrorMessage';

@@ -18,7 +18,7 @@ const LoadingSpinner = (props) => {
     <View style={ [styles.loadingSpiner, style] }>
       <ActivityIndicator
         size={ size || 'large' }
-        color={ color }
+        color={ color || '#FFF' }
       />
     </View>
   );
