@@ -1,5 +1,5 @@
 # Database credentials
-src/models/db/firebaseCredentials.js
+firebaseCredentials.js
 
 # OSX
 #
