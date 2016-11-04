@@ -7,7 +7,8 @@ const styles = {
     fontSize: 20,
     fontWeight: 'bold',
     fontFamily: 'Futura-Medium',
-    color: '#C49A6C', // light brown
+    color: 'rgba(0, 0, 0, 0.5)',
+    marginBottom: 30,
     // textAlign: 'center',
   },
   headerWrapper: {

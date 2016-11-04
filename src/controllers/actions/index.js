@@ -1,5 +1,6 @@
 
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 // type constants
 import {
@@ -20,6 +21,8 @@ const logInSuccess = (dispatch, user) => {
     type: LOGIN_SUCCESS,
     payload: user,
   });
+
+  Actions.mapActivities();
 };
 
 export const emailChanged = (text) => {

@@ -36,7 +36,7 @@ const Auth = (state = INIT_STATE, action) => {
       break;
 
     case LOGIN_FAIL:
-      result = { ...state, error: 'Authentication for user failed', password: '', loading: false };
+      result = { ...state, error: 'Email and password didn\'t match', password: '', loading: false };
       break;
 
     default:
