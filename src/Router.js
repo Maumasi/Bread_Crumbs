@@ -4,6 +4,9 @@ import { Scene, Router } from 'react-native-router-flux';
 // screens
 import { AppLoadingScreen, LogInScreen } from 'Bread_Crumbs/src/views/screens/';
 
+// test components
+import { MapArea } from 'Bread_Crumbs/src/views/components/';
+
 const styles = {
   routerNavigationBarStyle: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -27,7 +30,7 @@ const AppRouter = () => {
         </Scene>
 
         <Scene key={ 'mapActivities' } >
-          <Scene key={ 'mapArea' } component={ AppLoadingScreen } title={ ' ' } initial />
+          <Scene key={ 'mapArea' } component={ MapArea } title={ ' ' } initial />
         </Scene>
 
     </Router>

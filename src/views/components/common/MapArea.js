@@ -33,11 +33,14 @@ const MapArea = (props) => {
 ];
 
   return (
+    <ScreenWrapper>
       <MapView style={ styles.mapArea }
         showsUserLocation
         followUserLocation
         annotations={ markers }
       />
+      
+    </ScreenWrapper>
   );
 };
 
