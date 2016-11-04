@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
-// react-redux
+// redux actions
 import { emailChanged, passwordChanged, logInUser } from 'Bread_Crumbs/src/controllers/actions/';
 
 // components
 import { Input, Section, Button, LoadingSpinner, ErrorMessage, Header } from 'Bread_Crumbs/src/views/components/';
-
-// logic renders
-import { loginOrSpinner } from 'Bread_Crumbs/src/views/partials/';
 
 // themes
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
