@@ -12,6 +12,7 @@
     "rules": {
         # // Possible Errors
         # "comma-dangle": [1, "never"],
+        "arrow-body-style": 0,
         "no-cond-assign": 2,
         "no-console": 1,
         "no-constant-condition": 2,

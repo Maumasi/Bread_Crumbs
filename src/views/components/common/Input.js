@@ -8,15 +8,19 @@ const { loginInput, boxShadow } = themes;
 
 const styles = {
   input: {
-    color: '#000',
+    // color: 'rgba(0, 0, 0, 0.8)',
     fontSize: 18,
     lineHeight: 23,
     flex: 1,
+    fontWeight: 'bold',
+    color: 'rgba(0, 0, 0, 0.5)',
   },
 
   lableStyle: {
     fontSize: 18,
+    fontWeight: 'bold',
     flex: 2,
+    color: 'rgba(0, 0, 0, 0.8)',
   },
   wrapper: {
     flexDirection: 'row',

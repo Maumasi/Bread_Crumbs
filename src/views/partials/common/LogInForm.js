@@ -1,102 +1,59 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import firebase from 'firebase';
+import { connect } from 'react-redux';
+
+// react-redux
+import { emailChanged, passwordChanged, logInUser } from 'Bread_Crumbs/src/controllers/actions/';
 
 // components
-import { Button,
-  Section,
-  Input,
-  LoadingSpinner,
-  Header,
-} from 'Bread_Crumbs/src/views/components/';
+import { Input, Section, Button, LoadingSpinner, ErrorMessage, Header } from 'Bread_Crumbs/src/views/components/';
+
+// logic renders
+import { loginOrSpinner } from 'Bread_Crumbs/src/views/partials/';
 
 // themes
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { loginInput, boxShadow, errorStyles, loadingMessage } = themes;
 
-const styles = {
-  spinner: {
-    opacity: 0.6,
-  },
-  credentialsSpinner: {
-    marginBottom: 20,
-  },
-};
 
-class LogInForm extends Component {
+class LogInFormRedux extends Component {
 
-  state = {
-    email: '',
-    password: '',
-    error: '',
-    loading: false,
-  };
-
-  // login button actions
-  onButtonPress = () => {
-    const { email, password } = this.state;
-    this.setState({
-      error: '',
-      loading: true,
-    });
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(this.onLogin.bind(this))
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(this.onLogin.bind(this))
-          .catch(this.onLoginFail.bind(this));
-      });
-  };
-
-  onLogin() {
-    this.setState({
-      email: '',
-      password: '',
-      error: '',
-      loading: false,
-    });
+  onEmailChange(text) {
+    this.props.emailChanged(text);
   }
 
-  onLoginFail() {
-    this.setState({
-      password: '',
-      error: 'Email and password did not match',
-      loading: false,
-    });
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
   }
 
-  renderButton() {
+  onButtonPress() {
+    const { email, password } = this.props;
+    this.props.logInUser({ email, password });
+  }
+
+  renderForm() {
     let result;
-
-    // when trying to login show spinner
-    if (this.state.loading) {
+    if (this.props.loading) {
       result = (
         <Section>
-          <Header
-            wrapperTheme={ styles.credentialsSpinner }
-            textTheme={ loadingMessage }
-            title={ 'Checking Credentials' }
-          />
-
-          <LoadingSpinner color={ '#FFF' } />
+          <Header title={ 'Lets get you logged in' } />
+          <LoadingSpinner />
         </Section>
       );
-
-    // no action taken, show button
     } else {
       result = (
         <Section>
 
-          <Text style={ errorStyles }>
-            { this.state.error }
-          </Text>
+          <ErrorMessage>
+            { this.props.error }
+          </ErrorMessage>
+
 
           <Input
             lable={ 'Email' }
             placeholder={ 'example@mail.com' }
-            value={ this.state.email }
-            onChangeText={ (email) => this.setState({ email }) }
+            value={ this.props.email }
+            onChangeText={ this.onEmailChange.bind(this) }
             autoFocus
             returnKeyType={ 'next' }
             returnKeyLabel={ 'next' }
@@ -106,19 +63,18 @@ class LogInForm extends Component {
 
           <Input
             lable={ 'Password' }
+            value={ this.props.password }
             placeholder={ 'password123' }
-            value={ this.state.password }
-            onChangeText={ (password) => this.setState({ password }) }
+            onChangeText={ this.onPasswordChange.bind(this) }
             secureTextEntry
             returnKeyType={ 'go' }
             returnKeyLabel={ 'go' }
             autoCapitalize={ 'none' }
-            onSubmitEditing={ this.onButtonPress.bind(this) }
           />
 
           <Button
-            onPress={ this.onButtonPress.bind(this) }
             buttonTitle={ 'Log In' }
+            onPress={ this.onButtonPress.bind(this) }
           />
 
         </Section>
@@ -129,8 +85,19 @@ class LogInForm extends Component {
   }
 
   render() {
-    return this.renderButton();
+    return this.renderForm();
   }
 }
 
+const mapStateToProps = (state) => {
+  const { email, password, error, loading } = state.auth;
+  return {
+    email,
+    password,
+    error,
+    loading,
+  };
+};
+
+const LogInForm = connect(mapStateToProps, { emailChanged, passwordChanged, logInUser })(LogInFormRedux);
 export { LogInForm };
