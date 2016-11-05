@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+// import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 // redux actions
@@ -12,8 +12,7 @@ import { Input, Section, Button, LoadingSpinner, ErrorMessage, Header } from 'Br
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { loginInput, boxShadow, errorStyles, loadingMessage } = themes;
 
-
-class LogInFormRedux extends Component {
+class LogInForm extends Component {
 
   onEmailChange(text) {
     this.props.emailChanged(text);
@@ -96,5 +95,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const LogInForm = connect(mapStateToProps, { emailChanged, passwordChanged, logInUser })(LogInFormRedux);
+LogInForm = connect(mapStateToProps, { emailChanged, passwordChanged, logInUser })(LogInForm);
 export { LogInForm };

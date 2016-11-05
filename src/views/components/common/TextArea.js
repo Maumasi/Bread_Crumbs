@@ -1,38 +1,38 @@
 
 import React from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 
 // themes
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
-const { loginInput, boxShadow } = themes;
+// const { loginInput } = themes;
 
 const styles = {
-  input: {
-    // color: 'rgba(0, 0, 0, 0.8)',
-    fontSize: 18,
-    lineHeight: 23,
-    flex: 1,
-    fontWeight: 'bold',
-    color: 'rgba(0, 0, 0, 0.5)',
-  },
-
   lableStyle: {
     fontSize: 18,
+    // fontWeight: 'bold',
+    // flex: 2,
+    // color: 'rgba(0, 0, 0, 0.8)',
+    padding: 5,
+    height: 100,
     fontWeight: 'bold',
-    flex: 2,
-    color: 'rgba(0, 0, 0, 0.8)',
-  },
-  wrapper: {
+    color: 'rgba(0, 0, 0, 0.5)',
+    borderWidth: 2,
+    borderColor: 'rgba(0, 0, 0, 0.8)',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
     flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 8,
+    marginBottom: 8,
+    paddingRight: 10,
+    paddingLeft: 10,
   },
 };
 
-const { wrapper, lableStyle, input } = styles;
+const { lableStyle } = styles;
 
-const Input = (props) => {
+const TextArea = (props) => {
   const {
-    lable,
     value,
     onChangeText,
     placeholder,
@@ -44,15 +44,17 @@ const Input = (props) => {
     keyboardType,
     returnKeyLabel,
     inputTheme,
-    textTheme,
+    multiline,
+    autoCorrect,
+    theme,
   } = props;
 
   return (
-    <View style={ [loginInput, boxShadow, wrapper] }>
-      <Text style={ [input, textTheme] }>{ lable }</Text>
+    <View style={ [theme] }>
       <TextInput
+        multiline={ multiline }
         placeholder={ placeholder }
-        autoCorrect={ false }
+        autoCorrect={ autoCorrect }
         style={ [lableStyle, inputTheme] }
         value={ value }
         onChangeText={ onChangeText }
@@ -68,4 +70,4 @@ const Input = (props) => {
   );
 };
 
-export { Input };
+export { TextArea };
