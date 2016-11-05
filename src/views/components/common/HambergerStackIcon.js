@@ -7,7 +7,7 @@ import {
   LayoutAnimation,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { menuActivated } from 'Bread_Crumbs/src/controllers/actions/';
+import { menuOpened } from 'Bread_Crumbs/src/controllers/actions/';
 
 const styles = {
   iconWrapper: {
@@ -28,10 +28,11 @@ class HambergerStackIcon extends Component {
 
   onMenuIconPress() {
     const bool = true;
-    this.props.menuActivated(bool);
+    this.props.menuOpened(bool);
   }
 
   render() {
+    console.log(this.props);
     return (
       <TouchableOpacity style={ [styles.iconWrapper] } onPress={ this.onMenuIconPress.bind(this) } >
         <View style={ [styles.iconBars] } />
@@ -49,5 +50,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-HambergerStackIcon = connect(mapStateToProps, { menuActivated })(HambergerStackIcon);
+HambergerStackIcon = connect(mapStateToProps, { menuOpened })(HambergerStackIcon);
 export { HambergerStackIcon };

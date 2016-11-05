@@ -11,15 +11,20 @@ const MenuState = (state = INIT_STATE, action) => {
 
   switch (type) {
     case MENU_OPENED:
-      result = { ...state, menuState: payload };
+      result = { ...state, menuState: true };
       break;
 
     case MENU_CLOSED:
-      result = { ...state, menuState: payload };
+      result = { ...state, menuState: false };
       break;
 
     default:
       result = state;
+  }
+
+  // make icon close on press if menu is open
+  if (state.menuState === true && payload === true) {
+    result = { ...state, menuState: false };
   }
 
   return result;

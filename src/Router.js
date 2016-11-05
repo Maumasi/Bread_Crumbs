@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import state from 'Bread_Crumbs/src/controllers/actions/';
@@ -33,19 +33,10 @@ class AppRouter extends Component {
 // <Scene key={ 'login' } >
 //   <Scene key={ 'userLogin' } component={ LogInScreen } title={ ' ' } initial />
 
-// right nav button demo
-// <Scene
-//   key={ 'userLogin' }
-//   component={ AppLoadingScreen }
-//   title={ ' ' }
-//   renderRightButton={ () => <HambergerStackIcon /> }
-//   onRight={ () => console.log('Right button pressed') }
-//   initial
-// />
-
 // renderRightButton={ () => HambergerStackIcon }
 // renderRightButton={ () => <HambergerStackIcon /> }
   render() {
+    console.log('Router:');
     console.log(this.props);
     return (
       <Router
@@ -86,7 +77,7 @@ class AppRouter extends Component {
       </Router>
     );
   }
-};
+}
 
 const mapStateToProps = (state) => {
   return state;

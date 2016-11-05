@@ -19,7 +19,8 @@ const { emptyMenuSide, menuSide } = themes;
 const styles = {
   menuOrentation: {
     flexDirection: 'row',
-    elevation: 2,
+    // elevation: 1,
+    // zIndex: 99,
   },
   menuHeader: {
     paddingTop: 5,
@@ -30,10 +31,30 @@ const styles = {
 
 const { menuOrentation, menuHeader } = styles;
 
+const CustomLayoutSpring = {
+  duration: 30,
+  create: {
+    type: LayoutAnimation.Types.linear,
+    property: LayoutAnimation.Properties.opacity,
+    springDamping: 1,
+  },
+  update: {
+    type: LayoutAnimation.Types.linear,
+    property: LayoutAnimation.Properties.opacity,
+    springDamping: 0.0,
+  },
+};
+
 class HambergerStackMenu extends Component {
 
   componentWillMount() {
-    LayoutAnimation.linear();
+    console.log('test');
+    LayoutAnimation.configureNext(CustomLayoutSpring);
+  }
+
+  componentWillUnmount() {
+    console.log('test');
+    LayoutAnimation.configureNext(CustomLayoutSpring);
   }
 
   onEmptySidePress() {
