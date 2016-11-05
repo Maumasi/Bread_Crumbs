@@ -7,14 +7,14 @@ import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { boxShadow, loginButton, loginText } = themes;
 
 const Button = (props) => {
-  const { onPress, buttonTitle } = props;
+  const { onPress, buttonTitle, theme, textTheme } = props;
 
   return (
     <TouchableOpacity
-      style={ [boxShadow, loginButton] }
+      style={ [boxShadow, loginButton, theme] }
       onPress={ onPress }
     >
-      <Text style={ [loginText] }>{ buttonTitle }</Text>
+      <Text style={ [loginText, textTheme] }>{ buttonTitle }</Text>
     </TouchableOpacity>
   );
 };

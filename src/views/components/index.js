@@ -10,3 +10,4 @@ export * from 'Bread_Crumbs/src/views/components/common/Input';
 export * from 'Bread_Crumbs/src/views/components/common/LoadingSpinner';
 export * from 'Bread_Crumbs/src/views/components/common/ErrorMessage';
 export * from 'Bread_Crumbs/src/views/components/common/MapArea';
+export * from 'Bread_Crumbs/src/views/components/common/MenuItem';

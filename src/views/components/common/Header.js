@@ -18,7 +18,7 @@ const styles = {
     paddingTop: 65,
     // height: 80,
     // backgroundColor: '#000',
-    elevation: 2,
+    // elevation: 2,
     position: 'relative',
   },
 };

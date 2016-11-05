@@ -13,6 +13,7 @@ const INIT_STATE = {
   password: '',
   user: null,
   error: '',
+  // currentScreen: '',
 };
 
 const Auth = (state = INIT_STATE, action) => {
