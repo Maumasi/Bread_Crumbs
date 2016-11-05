@@ -74,7 +74,7 @@ class CreateBreadCrumb extends Component {
 
         <TextArea
           multiline
-          placeholder={ 'Leave a great Bread Cumb for someone!' }
+          placeholder={ 'Leave a new Bread Cumb for the world to discover!' }
           autoCorrect
           inputTheme={ [loginInput, styles.textArea] }
           autoCapitalize={ 'sentences' }
