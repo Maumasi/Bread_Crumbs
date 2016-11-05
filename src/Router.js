@@ -10,6 +10,7 @@ import {
   LogInScreen,
   AppLoadingScreen,
   CreateBreadCrumb,
+  BreadCrumbMap,
 } from 'Bread_Crumbs/src/views/screens/';
 
 // test components
@@ -46,7 +47,7 @@ class AppRouter extends Component {
           <Scene key={ 'login' } initial >
             <Scene
               key={ 'userLogin' }
-              component={ CreateBreadCrumb }
+              component={ BreadCrumbMap }
               title={ ' ' }
               renderRightButton={ () => <HambergerStackIcon /> }
               initial
@@ -64,7 +65,8 @@ class AppRouter extends Component {
               component={ MapArea }
               renderRightButton={ () => <HambergerStackIcon /> }
               title={ ' ' }
-              initial />
+              initial
+            />
 
             <Scene
               key={ 'createBreadCrumb' }

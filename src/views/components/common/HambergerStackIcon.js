@@ -9,14 +9,18 @@ import { menuOpened } from 'Bread_Crumbs/src/controllers/actions/';
 const styles = {
   iconWrapper: {
     justifyContent: 'space-around',
-    width: 30,
-    height: 20,
+    width: 38,
+    height: 28,
+    padding: 2,
+    borderRadius: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
 
   iconBars: {
     marginHorizontal: 5,
-    height: 3,
+    height: 4,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 5,
   },
 };
 

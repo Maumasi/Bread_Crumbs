@@ -5,7 +5,7 @@ import { Dimensions, MapView, StatusBar } from 'react-native';
 // custom components
 import { ScreenWrapper } from 'Bread_Crumbs/src/views/components/';
 
-StatusBar.setBarStyle('dark-content');
+// StatusBar.setBarStyle('dark-content');
 
 const { width, height } = Dimensions.get('window');
 
@@ -35,8 +35,6 @@ const MapArea = (props) => {
 
   return (
     <ScreenWrapper>
-      <StatusBar barStyle="dark-content"/>
-
       <MapView style={ styles.mapArea }
         showsUserLocation
         followUserLocation
