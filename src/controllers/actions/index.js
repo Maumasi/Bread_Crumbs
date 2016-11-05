@@ -2,6 +2,7 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
+
 // type constants
 import {
   EMAIL_CHANGED,
@@ -56,5 +57,27 @@ export const logInUser = ({ email, password }) => {
 
           .catch(() => logInFail(dispatch));
       });
+  };
+};
+
+// Auth actions end ===============================================
+
+import {
+  MENU_OPENED,
+  MENU_CLOSED,
+} from 'Bread_Crumbs/src/controllers/actions/types';
+// import { Actions } from 'react-native-router-flux';
+
+export const menuOpened = (bool) => {
+  return {
+    type: MENU_OPENED,
+    payload: bool,
+  };
+};
+
+export const menuClosed = (bool) => {
+  return {
+    type: MENU_CLOSED,
+    payload: bool,
   };
 };

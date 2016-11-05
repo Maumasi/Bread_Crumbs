@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, TouchableOpacity, View, Text } from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  View,
+  Text,
+  LayoutAnimation,
+} from 'react-native';
 import { connect } from 'react-redux';
+import { menuClosed } from 'Bread_Crumbs/src/controllers/actions/';
 
 // components
 import { ScreenWrapper, Header, Button, MenuItem } from 'Bread_Crumbs/src/views/components/';
 
-themes
+// themes
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { emptyMenuSide, menuSide } = themes;
 
 const styles = {
   menuOrentation: {
     flexDirection: 'row',
+    elevation: 2,
   },
   menuHeader: {
     paddingTop: 5,
@@ -20,12 +28,17 @@ const styles = {
   },
 };
 
-const { menuOrentation, menuHeader, buttonTheme, menuItem } = styles;
+const { menuOrentation, menuHeader } = styles;
 
-class HambergerStack extends Component {
+class HambergerStackMenu extends Component {
+
+  componentWillMount() {
+    LayoutAnimation.linear();
+  }
 
   onEmptySidePress() {
-    console.log('open side!');
+    const bool = false;
+    this.props.menuClosed(bool);
   }
 
   onMenuItemPress() {
@@ -41,32 +54,31 @@ class HambergerStack extends Component {
       <ScreenWrapper theme={ menuOrentation } >
 
         <TouchableWithoutFeedback onPress={ this.onEmptySidePress.bind(this) } >
-          <View  style={ emptyMenuSide } />
+          <View style={ emptyMenuSide } />
         </TouchableWithoutFeedback>
 
 
-        <View  style={ menuSide } >
+        <View style={ menuSide } >
           <Header
             title={ 'Menu' }
             wrapperTheme={ menuHeader }
           />
 
-          <MenuItem text={ 'My Bread Crumbs' } />
+          <MenuItem text={ 'My Bread Crumbs' } onPress={ () => console.log('Actions.allBreadCrumbs()') } />
 
-          <MenuItem text={ 'Log out' } />
+          <MenuItem text={ 'Log out' } onPress={ () => console.log('firebase.auth().signOut()') } />
         </View>
       </ScreenWrapper>
     );
   }
 }
 
-// const mapStateToProps = (state) => {
-//   const { opened } = state.menu;
-//   return {
-//     opened,
-//   };
-// };
+const mapStateToProps = (state) => {
+  const { menuClosed } = state.menu;
+  return {
+    menuClosed,
+  };
+};
 
-// const HambergerStackMenu = connect(mapStateToProps, { opened })(HambergerStack);
-const HambergerStackMenu = HambergerStack; // remove this after testing and uncomment everything else
+HambergerStackMenu = connect(mapStateToProps, { menuClosed })(HambergerStackMenu);
 export { HambergerStackMenu };

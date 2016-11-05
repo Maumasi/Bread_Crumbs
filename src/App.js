@@ -13,10 +13,6 @@ import firebaseCredentials from 'Bread_Crumbs/src/models/db/firebaseCredentials'
 // router
 import Router from 'Bread_Crumbs/src/Router';
 
-// partial
-import { LogInScreen } from 'Bread_Crumbs/src/views/screens/';
-
-
 class App extends Component {
 
   // init db
@@ -26,13 +22,12 @@ class App extends Component {
 
   // app view
   render() {
-
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={ store } >
         <Router />
       </Provider>
-  );
+    );
   }
 }// class
 

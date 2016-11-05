@@ -18,22 +18,23 @@ const INIT_STATE = {
 
 const Auth = (state = INIT_STATE, action) => {
   let result;
+  const { type, payload } = action;
 
-  switch (action.type) {
+  switch (type) {
     case EMAIL_CHANGED:
-      result = { ...state, email: action.payload };
+      result = { ...state, email: payload };
       break;
 
     case PASSWORD_CHANGED:
-      result = { ...state, password: action.payload };
+      result = { ...state, password: payload };
       break;
 
     case LOGIN_USER:
-      result = { ...state, user: action.payload, loading: true, error: '' };
+      result = { ...state, user: payload, loading: true, error: '' };
       break;
 
     case LOGIN_SUCCESS:
-      result = { ...state, user: action.payload, error: '', password: '', loading: false };
+      result = { ...state, user: payload, error: '', password: '', loading: false };
       break;
 
     case LOGIN_FAIL:
