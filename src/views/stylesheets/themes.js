@@ -99,18 +99,18 @@ const themes = {
 
   // hambergerStack screen styles
   menuSide: {
-    backgroundColor: 'rgba(26, 188, 156, 0.5)',
+    backgroundColor: 'rgba(26, 188, 156, 0.8)',
     borderLeftColor: 'rgba(0, 0, 0, 0.4)',
     borderLeftWidth: 2,
     flex: 2,
-    marginTop: 30,
+    // marginTop: 30,
 
   },
 
   emptyMenuSide: {
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     flex: 1,
-    marginTop: 30,
+    // marginTop: 30,
   },
 };
 

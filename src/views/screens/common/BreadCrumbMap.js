@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { menuClosed } from 'Bread_Crumbs/src/controllers/actions/';
+import { Actions } from 'react-native-router-flux';
+import state from 'Bread_Crumbs/src/controllers/actions/';
 
 import { MapArea, CircleButton } from 'Bread_Crumbs/src/views/components/';
 
+// menu
+import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
+
 const styles = {
   wrapper: {
-    position: 'relative',
+    // position: 'relative',
   },
 
   statusBarBack: {
@@ -18,26 +22,42 @@ const styles = {
 };
 class BreadCrumbMap extends Component {
 
+  menuDisplay() {
+    let result;
+
+    if (this.props.menu.menuState) {
+      result = <HambergerStackMenu />;
+    } else {
+      result = null;
+    }
+    return result;
+  }
+
   render() {
     return (
       <View style={ [styles.wrapper] }>
-        <MapArea />
-        <View style={ styles.statusBarBack } />
-
         <View>
-          <CircleButton text={ 'Drop Bread Crumb' } />
+          <MapArea />
+          <View style={ styles.statusBarBack } />
+
+          <View>
+            <CircleButton
+              onPress={ () => Actions.createBreadCrumb() }
+              text={ 'Drop Bread Crumb' }
+            />
+          </View>
         </View>
+
+        { this.menuDisplay() }
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  // const { menuClosed } = state.breadCrumb;
-  // return {
-  //   menuClosed,
-  // };
+  return state;
 };
 
-// BreadCrumbMap = connect(mapStateToProps, null)(BreadCrumbMap);
+
+BreadCrumbMap = connect(mapStateToProps, { state })(BreadCrumbMap);
 export { BreadCrumbMap };

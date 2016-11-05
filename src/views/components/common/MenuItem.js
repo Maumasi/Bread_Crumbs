@@ -9,9 +9,11 @@ const styles = {
     marginBottom: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     borderBottomWidth: 2,
-    borderBottomColor: 'rgba(255, 255, 255, 0.3)',
+    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     borderLeftWidth: 2,
-    borderLeftColor: 'rgba(255, 255, 255, 0.3)',
+    borderLeftColor: 'rgba(0, 0, 0, 0.1)',
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
   },
 
   text: {

@@ -10,6 +10,8 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
+    // zIndex: 10,
+    // elevation: 3,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
 };

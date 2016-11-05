@@ -5,9 +5,12 @@ import {
   View,
   Text,
   LayoutAnimation,
+  Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { menuClosed } from 'Bread_Crumbs/src/controllers/actions/';
+
+const { width, height } = Dimensions.get('window');
 
 // components
 import { ScreenWrapper, Header, Button, MenuItem } from 'Bread_Crumbs/src/views/components/';
@@ -19,11 +22,11 @@ const { emptyMenuSide, menuSide } = themes;
 const styles = {
   menuOrentation: {
     flexDirection: 'row',
-    // elevation: 1,
-    // zIndex: 99,
+    width,
+    height,
   },
   menuHeader: {
-    paddingTop: 5,
+    // paddingTop: 5,
     paddingBottom: 5,
     alignItems: 'flex-start',
   },
@@ -47,16 +50,6 @@ const CustomLayoutSpring = {
 
 class HambergerStackMenu extends Component {
 
-  componentWillMount() {
-    console.log('test');
-    LayoutAnimation.configureNext(CustomLayoutSpring);
-  }
-
-  componentWillUnmount() {
-    console.log('test');
-    LayoutAnimation.configureNext(CustomLayoutSpring);
-  }
-
   onEmptySidePress() {
     const bool = false;
     this.props.menuClosed(bool);
@@ -71,6 +64,8 @@ class HambergerStackMenu extends Component {
   }
 
   render() {
+    LayoutAnimation.configureNext(CustomLayoutSpring);
+
     return (
       <ScreenWrapper theme={ menuOrentation } >
 

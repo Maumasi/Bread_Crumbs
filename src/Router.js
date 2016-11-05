@@ -26,6 +26,14 @@ const styles = {
   routerSceneStyle: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
   },
+
+  mapBackButton: {
+    height: 20,
+    width: 60,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'rgba(0, 0, 0, 0.5)',
+  },
 };
 
 class AppRouter extends Component {
@@ -47,9 +55,8 @@ class AppRouter extends Component {
           <Scene key={ 'login' } initial >
             <Scene
               key={ 'userLogin' }
-              component={ BreadCrumbMap }
+              component={ LogInScreen }
               title={ ' ' }
-              renderRightButton={ () => <HambergerStackIcon /> }
               initial
             />
 
@@ -62,7 +69,7 @@ class AppRouter extends Component {
           <Scene key={ 'mapActivities' } >
             <Scene
               key={ 'mapArea' }
-              component={ MapArea }
+              component={ BreadCrumbMap }
               renderRightButton={ () => <HambergerStackIcon /> }
               title={ ' ' }
               initial
@@ -71,6 +78,8 @@ class AppRouter extends Component {
             <Scene
               key={ 'createBreadCrumb' }
               component={ CreateBreadCrumb }
+              backTitle={ 'Map' }
+              backButtonTextStyle={ styles.mapBackButton }
               title={ ' ' }
               renderRightButton={ () => <HambergerStackIcon /> }
             />
