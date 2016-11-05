@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import {
-  TouchableWithoutFeedback,
   TouchableOpacity,
   View,
-  Text,
-  LayoutAnimation,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { menuOpened } from 'Bread_Crumbs/src/controllers/actions/';
@@ -24,7 +21,6 @@ const styles = {
 };
 
 class HambergerStackIcon extends Component {
-  // const { theme, barTheme } = props;
 
   onMenuIconPress() {
     const bool = true;
@@ -32,7 +28,6 @@ class HambergerStackIcon extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <TouchableOpacity style={ [styles.iconWrapper] } onPress={ this.onMenuIconPress.bind(this) } >
         <View style={ [styles.iconBars] } />

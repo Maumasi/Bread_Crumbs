@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Switch } from 'react-native';
+import { Switch, Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import state from 'Bread_Crumbs/src/controllers/actions/';
 
 // components
-import { ScreenWrapper, Header, Button, MenuItem, TextArea, Input } from 'Bread_Crumbs/src/views/components/';
+import {
+  ScreenWrapper,
+  Header,
+  Button,
+  MenuItem,
+  TextArea,
+  Input,
+  SwitchRadioButton
+} from 'Bread_Crumbs/src/views/components/';
 
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
@@ -17,6 +25,10 @@ import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { loginInput } = themes;
 
 const styles = {
+  theme: {
+    backgroundColor: 'rgb(26, 188, 156)',
+  },
+
   createCrumbHeader: {
     paddingTop: 60,
     paddingBottom: 5,
@@ -39,6 +51,10 @@ const styles = {
     borderColor: 'rgba(0, 0, 0, 0.4)',
     // padding: 5,
   },
+
+  buttonTheme: {
+    marginTop: 60,
+  },
 };
 
 class CreateBreadCrumb extends Component {
@@ -57,7 +73,7 @@ class CreateBreadCrumb extends Component {
 
   render() {
     return (
-      <ScreenWrapper>
+      <ScreenWrapper theme={ styles.theme }>
         <Header
           wrapperTheme={ styles.createCrumbHeader }
           textTheme={ styles.textTitle }
@@ -74,17 +90,19 @@ class CreateBreadCrumb extends Component {
 
         <TextArea
           multiline
-          placeholder={ 'Leave a new Bread Cumb for the world to discover!' }
+          placeholder={ 'Leave a Bread Cumb in the world!' }
           autoCorrect
           inputTheme={ [loginInput, styles.textArea] }
           autoCapitalize={ 'sentences' }
-          returnKeyType={ 'done' }
-          returnKeyLabel={ 'done' }
         />
 
-        <Switch
-          onValueChange={ (value) => console.log(value) }
+        <SwitchRadioButton
+          text={ 'Hide Crumb untill discovered' }
+          value={ false }
+          onValueChange={ () => console.log('changed') }
         />
+
+        <Button theme={ styles.buttonTheme } buttonTitle={ 'Drop this Bread Crumb' } />
 
         { this.menuDisplay() }
       </ScreenWrapper>
