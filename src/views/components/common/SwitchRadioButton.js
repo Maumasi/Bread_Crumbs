@@ -26,7 +26,7 @@ const styles = {
 };
 
 const SwitchRadioButton = (props) => {
-  const { theme, text, switchTheme, textTheme, value, onValueChange } = props;
+  const { theme, text, switchTheme, textTheme, value, onValueChange, onTintColor, tintColor } = props;
 
   return (
     <View style={ theme }>
@@ -36,6 +36,8 @@ const SwitchRadioButton = (props) => {
             style={ [switchTheme] }
             onValueChange={ onValueChange }
             value={ value }
+            onTintColor={ onTintColor }
+            tintColor={ tintColor }
           />
 
           <Text style={ [styles.textTheme, textTheme] } >{ text }</Text>

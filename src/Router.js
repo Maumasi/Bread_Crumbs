@@ -16,7 +16,6 @@ import {
 // test components
 import { MapArea, HambergerStackIcon } from 'Bread_Crumbs/src/views/components/';
 
-
 const styles = {
   routerNavigationBarStyle: {
     backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -38,15 +37,8 @@ const styles = {
 
 class AppRouter extends Component {
 
-// first page:
-// <Scene key={ 'login' } >
 //   <Scene key={ 'userLogin' } component={ LogInScreen } title={ ' ' } initial />
-
-// renderRightButton={ () => HambergerStackIcon }
-// renderRightButton={ () => <HambergerStackIcon /> }
   render() {
-    console.log('Router:');
-    console.log(this.props);
     return (
       <Router
         sceneStyle={ styles.routerSceneStyle }

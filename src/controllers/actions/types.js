@@ -5,3 +5,4 @@ export const LOGIN_FAIL = 'login_fail';
 export const LOGIN_USER = 'login_user';
 export const MENU_OPENED = 'menu_opened';
 export const MENU_CLOSED = 'menu_closed';
+export const BREAD_CRUMB_UPDATE = 'bread_crumb_update';

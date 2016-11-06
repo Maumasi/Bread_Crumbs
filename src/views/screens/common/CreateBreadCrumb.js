@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import state from 'Bread_Crumbs/src/controllers/actions/';
+import { updateBreadCrumb } from 'Bread_Crumbs/src/controllers/actions/';
+import firebase from 'firebase';
+
+console.log(this.props);
 
 // components
 import {
@@ -62,7 +65,7 @@ class CreateBreadCrumb extends Component {
   menuDisplay() {
     let result;
 
-    if (this.props.menu.menuState) {
+    if (this.props.menuState) {
       result = <HambergerStackMenu />;
     } else {
       result = null;
@@ -70,6 +73,13 @@ class CreateBreadCrumb extends Component {
     return result;
   }
 
+  onDiscoverableSwitch(value) {
+    this.props.updateBreadCrumb({
+      prop: 'discoverable',
+      value,
+    });
+    console.log(value);
+  }
 
   render() {
     return (
@@ -86,6 +96,13 @@ class CreateBreadCrumb extends Component {
           style={ [styles.textTitle, loginInput] }
           inputTheme={{ flex: 5 }}
           autoFocus
+
+          onChangeText={ (value) => {
+            this.props.updateBreadCrumb({
+              prop: 'title',
+              value,
+            });
+          }}
         />
 
         <TextArea
@@ -94,15 +111,53 @@ class CreateBreadCrumb extends Component {
           autoCorrect
           inputTheme={ [loginInput, styles.textArea] }
           autoCapitalize={ 'sentences' }
+
+          onChangeText={ (value) => {
+            this.props.updateBreadCrumb({
+              prop: 'message',
+              value,
+            });
+          }}
         />
 
         <SwitchRadioButton
           text={ 'Hide Crumb untill discovered' }
-          value={ false }
-          onValueChange={ () => console.log('changed') }
+          value={ this.props.discoverable }
+          tintColor={ '#000' }
+          onTintColor={ '#000' }
+
+          onValueChange={ (value) => {
+            this.props.updateBreadCrumb({
+              prop: 'discoverable',
+              value,
+            });
+          }}
         />
 
-        <Button theme={ styles.buttonTheme } buttonTitle={ 'Drop this Bread Crumb' } />
+        <Button
+          theme={ styles.buttonTheme }
+          buttonTitle={ 'Drop this Bread Crumb' }
+
+          onPress={ () => {
+            navigator.geolocation.getCurrentPosition((location) => {
+              // console.log(location.coords);
+              this.props.updateBreadCrumb({
+                prop: 'location',
+                value: location.coords,
+              });
+
+              this.props.updateBreadCrumb({
+                prop: 'date',
+                value: new Date().toISOString(),
+              });
+
+              this.props.updateBreadCrumb({
+                prop: 'userId',
+                value: this.props.user.uid,
+              }); // updateBreadCrumb
+            }); // getCurrentPosition
+          }}
+        />
 
         { this.menuDisplay() }
       </ScreenWrapper>
@@ -111,9 +166,30 @@ class CreateBreadCrumb extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // const {  } = state;
-  return state;
+  const {
+    title,
+    message,
+    discoverable,
+    location,
+    date,
+    uid,
+  } = state.breadCrumbs;
+
+  const { menuState } = state.menu;
+
+  const { user } = state.auth;
+
+  return {
+    title,
+    message,
+    discoverable,
+    location,
+    date,
+    uid,
+    menuState,
+    user,
+  };
 };
 
-CreateBreadCrumb = connect(mapStateToProps, { state })(CreateBreadCrumb);
+CreateBreadCrumb = connect(mapStateToProps, { updateBreadCrumb })(CreateBreadCrumb);
 export { CreateBreadCrumb };
