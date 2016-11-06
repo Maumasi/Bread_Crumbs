@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import state from 'Bread_Crumbs/src/controllers/actions/';
+import { mapMove } from 'Bread_Crumbs/src/controllers/actions/';
 
 import { MapArea, CircleButton } from 'Bread_Crumbs/src/views/components/';
 
@@ -25,19 +25,21 @@ class BreadCrumbMap extends Component {
   menuDisplay() {
     let result;
 
-    if (this.props.menu.menuState) {
+    if (this.props.menuState) {
       result = <HambergerStackMenu />;
     } else {
       result = null;
     }
     return result;
   }
-
   render() {
     return (
       <View style={ [styles.wrapper] }>
         <View>
-          <MapArea />
+          <MapArea
+            followUser={ this.props.mapChange.focusOnUser }
+            region={ this.props.mapChange.marker }
+          />
           <View style={ styles.statusBarBack } />
 
           <View>
@@ -55,9 +57,14 @@ class BreadCrumbMap extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state;
+  const { mapChange } = state;
+  const { menuState } = state.menu;
+  return {
+    mapChange,
+    menuState,
+  };
 };
 
 
-BreadCrumbMap = connect(mapStateToProps, { state })(BreadCrumbMap);
+BreadCrumbMap = connect(mapStateToProps, { mapMove })(BreadCrumbMap);
 export { BreadCrumbMap };

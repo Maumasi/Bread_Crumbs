@@ -15,3 +15,4 @@ export * from 'Bread_Crumbs/src/views/components/common/HambergerStackIcon';
 export * from 'Bread_Crumbs/src/views/components/common/TextArea';
 export * from 'Bread_Crumbs/src/views/components/common/SwitchRadioButton';
 export * from 'Bread_Crumbs/src/views/components/common/CircleButton';
+export * from 'Bread_Crumbs/src/views/components/common/CrumbListItem';

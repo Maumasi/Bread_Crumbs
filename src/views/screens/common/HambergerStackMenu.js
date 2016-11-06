@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
+
 import {
   TouchableWithoutFeedback,
   TouchableOpacity,
@@ -63,6 +66,17 @@ class HambergerStackMenu extends Component {
     console.log('this is the menu side!');
   }
 
+  allCrumbsFunc() {
+    const bool = true;
+    this.props.menuClosed(bool);
+    Actions.allMyBreadCrumbs();
+  }
+
+  signOutUser() {
+    firebase.auth().signOut();
+    Actions.login();
+  }
+
   render() {
     LayoutAnimation.configureNext(CustomLayoutSpring);
 
@@ -80,9 +94,9 @@ class HambergerStackMenu extends Component {
             wrapperTheme={ menuHeader }
           />
 
-          <MenuItem text={ 'My Bread Crumbs' } onPress={ () => console.log('Actions.allBreadCrumbs()') } />
+          <MenuItem text={ 'My Bread Crumbs' } onPress={ this.allCrumbsFunc.bind(this) } />
 
-          <MenuItem text={ 'Log out' } onPress={ () => console.log('firebase.auth().signOut()') } />
+          <MenuItem text={ 'Log out' } onPress={ this.signOutUser.bind(this) } />
         </View>
       </ScreenWrapper>
     );
@@ -90,9 +104,9 @@ class HambergerStackMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { menuClosed } = state.menu;
+  const { menuState } = state.menu;
   return {
-    menuClosed,
+    menuState,
   };
 };
 

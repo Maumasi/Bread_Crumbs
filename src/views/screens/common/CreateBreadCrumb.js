@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { updateBreadCrumb } from 'Bread_Crumbs/src/controllers/actions/';
+import { updateBreadCrumb, createBreadCrumb } from 'Bread_Crumbs/src/controllers/actions/';
 import firebase from 'firebase';
-
-console.log(this.props);
 
 // components
 import {
@@ -78,7 +76,41 @@ class CreateBreadCrumb extends Component {
       prop: 'discoverable',
       value,
     });
-    console.log(value);
+    // console.log(value);
+  }
+
+  onButtonPress() {
+
+    const {
+      title,
+      message,
+      discoverable,
+      user,
+     } = this.props;
+
+    navigator.geolocation.getCurrentPosition((geo) => {
+
+      const date = new Date().toISOString();
+      this.props.updateBreadCrumb({
+        prop: 'createdAt',
+        value: date,
+      });
+
+      this.props.updateBreadCrumb({
+        prop: 'userId',
+        value: user.uid,
+      }); // updateBreadCrumb
+
+      this.props.createBreadCrumb({
+        title,
+        message,
+        discoverable,
+        lat: geo.coords.latitude,
+        lng: geo.coords.longitude,
+        createdAt: date,
+        userId: user.uid,
+      });
+    }); // getCurrentPosition
   }
 
   render() {
@@ -138,25 +170,7 @@ class CreateBreadCrumb extends Component {
           theme={ styles.buttonTheme }
           buttonTitle={ 'Drop this Bread Crumb' }
 
-          onPress={ () => {
-            navigator.geolocation.getCurrentPosition((location) => {
-              // console.log(location.coords);
-              this.props.updateBreadCrumb({
-                prop: 'location',
-                value: location.coords,
-              });
-
-              this.props.updateBreadCrumb({
-                prop: 'date',
-                value: new Date().toISOString(),
-              });
-
-              this.props.updateBreadCrumb({
-                prop: 'userId',
-                value: this.props.user.uid,
-              }); // updateBreadCrumb
-            }); // getCurrentPosition
-          }}
+          onPress={ this.onButtonPress.bind(this) }
         />
 
         { this.menuDisplay() }
@@ -170,9 +184,10 @@ const mapStateToProps = (state) => {
     title,
     message,
     discoverable,
-    location,
-    date,
-    uid,
+    lat,
+    lng,
+    createdAt,
+    userId,
   } = state.breadCrumbs;
 
   const { menuState } = state.menu;
@@ -183,13 +198,14 @@ const mapStateToProps = (state) => {
     title,
     message,
     discoverable,
-    location,
-    date,
-    uid,
+    lat,
+    lng,
+    createdAt,
+    userId,
     menuState,
     user,
   };
 };
 
-CreateBreadCrumb = connect(mapStateToProps, { updateBreadCrumb })(CreateBreadCrumb);
+CreateBreadCrumb = connect(mapStateToProps, { updateBreadCrumb, createBreadCrumb })(CreateBreadCrumb);
 export { CreateBreadCrumb };

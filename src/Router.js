@@ -11,6 +11,7 @@ import {
   AppLoadingScreen,
   CreateBreadCrumb,
   BreadCrumbMap,
+  MyBreadCrumbs,
 } from 'Bread_Crumbs/src/views/screens/';
 
 // test components
@@ -35,9 +36,11 @@ const styles = {
   },
 };
 
+
 class AppRouter extends Component {
 
 //   <Scene key={ 'userLogin' } component={ LogInScreen } title={ ' ' } initial />
+// MyBreadCrumbs
   render() {
     return (
       <Router
@@ -52,10 +55,6 @@ class AppRouter extends Component {
               initial
             />
 
-          </Scene>
-
-          <Scene key={ 'menu' } >
-            <Scene key={ 'HambergerStackMenu' } component={ HambergerStackMenu } title={ ' ' } initial />
           </Scene>
 
           <Scene key={ 'mapActivities' } >
@@ -76,6 +75,12 @@ class AppRouter extends Component {
               renderRightButton={ () => <HambergerStackIcon /> }
             />
           </Scene>
+
+            <Scene
+              key={ 'allMyBreadCrumbs' }
+              component={ MyBreadCrumbs }
+              title={ ' ' }
+            />
 
       </Router>
     );
