@@ -1,15 +1,15 @@
 
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, ListView } from 'react-native';
+import { View, Text, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import { myBreadCrumbs } from 'Bread_Crumbs/src/controllers/actions/';
+import { breadCrumbsNearUser } from 'Bread_Crumbs/src/controllers/actions/';
 
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
 
 // components
-import { UserBreadCrumbListItem, Header } from 'Bread_Crumbs/src/views/components/';
+import { NearByCrumbListItem, Header } from 'Bread_Crumbs/src/views/components/';
 
 const styles = {
   theme: {
@@ -30,11 +30,12 @@ const styles = {
     marginTop: 0,
   },
 };
-class MyBreadCrumbs extends Component {
+
+class ProximityCrumbs extends Component {
 
   componentWillMount() {
     // console.log(this.props);
-    this.props.myBreadCrumbs();
+    this.props.breadCrumbsNearUser();
 
     this.buildDataSource(this.props);
   }
@@ -57,16 +58,16 @@ class MyBreadCrumbs extends Component {
   }
 
   // helper for data
-  buildDataSource({ myCrumbs }) {
+  buildDataSource({ nearByCrumbs }) {
     const crumbs = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
 
-    this.dataSource = crumbs.cloneWithRows(myCrumbs);
+    this.dataSource = crumbs.cloneWithRows(nearByCrumbs);
   }
 
-  renderRow(myCrumbs) {
-    return <UserBreadCrumbListItem breadCrumb={ myCrumbs } />;
+  renderRow(nearByCrumbs) {
+    return <NearByCrumbListItem breadCrumb={ nearByCrumbs } />;
   }
 
   render() {
@@ -77,7 +78,7 @@ class MyBreadCrumbs extends Component {
         <Header
           theme={ [styles.headerTheme] }
           textTheme={ styles.textTitle }
-          title={ 'My Bread Crumbs' } />
+          title={ 'Bread Crumbs Around You' } />
 
         <ListView
         enableEmptySections
@@ -94,15 +95,16 @@ class MyBreadCrumbs extends Component {
 
 const mapStateToProps = (state) => {
   const { menuState } = state.menu;
-  const myCrumbs = _.map(state.dbCrumbs, (val, uid) => {
+
+  const nearByCrumbs = _.map(state.dbCrumbs, (val, uid) => {
     return { ...val, uid };
   });
 
   // const { myCrumbs } = state;
 
-  return { myCrumbs, menuState };
+  return { nearByCrumbs, menuState };
 };
 
 
-MyBreadCrumbs = connect(mapStateToProps, { myBreadCrumbs })(MyBreadCrumbs);
-export { MyBreadCrumbs };
+ProximityCrumbs = connect(mapStateToProps, { breadCrumbsNearUser })(ProximityCrumbs);
+export { ProximityCrumbs };

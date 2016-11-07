@@ -19,7 +19,7 @@ import {
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
 
 // display menu
-import { MenuDisplay } from 'Bread_Crumbs/src/views/logicRender/';
+// import { MenuDisplay } from 'Bread_Crumbs/src/views/logicRender/';
 
 // themes
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';

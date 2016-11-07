@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import state from 'Bread_Crumbs/src/controllers/actions/';
+// import state from 'Bread_Crumbs/src/controllers/actions/';
 
 // screens
 import {
-  HambergerStackMenu,
+  // HambergerStackMenu,
   LogInScreen,
-  AppLoadingScreen,
+  // AppLoadingScreen,
   CreateBreadCrumb,
   BreadCrumbMap,
   MyBreadCrumbs,
+  ProximityCrumbs,
 } from 'Bread_Crumbs/src/views/screens/';
 
 // test components
@@ -77,9 +78,17 @@ class AppRouter extends Component {
           </Scene>
 
             <Scene
-              key={ 'allMyBreadCrumbs' }
+              key={ 'proximityCrumbs' }
+              component={ ProximityCrumbs }
+              title={ ' ' }
+              renderRightButton={ () => <HambergerStackIcon /> }
+            />
+
+            <Scene
+              key={ 'myBreadCrumbs' }
               component={ MyBreadCrumbs }
               title={ ' ' }
+              renderRightButton={ () => <HambergerStackIcon /> }
             />
 
       </Router>
@@ -88,8 +97,21 @@ class AppRouter extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state;
+  const {
+  auth,
+  menu,
+  breadCrumbs,
+  mapChange,
+  myCrumbs,
+} = state;
+  return {
+    auth,
+    menu,
+    breadCrumbs,
+    mapChange,
+    myCrumbs,
+  };
 };
 
-AppRouter = connect(mapStateToProps, { state })(AppRouter);
+AppRouter = connect(mapStateToProps, null)(AppRouter);
 export default AppRouter;

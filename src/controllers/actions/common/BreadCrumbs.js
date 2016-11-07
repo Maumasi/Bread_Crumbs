@@ -5,6 +5,7 @@ import {
   BREAD_CRUMB_UPDATE,
   BREAD_CRUMB_CREATED,
   MY_BREAD_CRUMBS,
+  BREAD_CRUMBS_IN_AREA,
 } from 'Bread_Crumbs/src/controllers/actions/types';
 
 // track bread crumb editing within app
@@ -46,7 +47,7 @@ export const createBreadCrumb = ({
 
 
 // get all user bread crumbs
-export const myBreadCrumbs = () => {
+export const breadCrumbsNearUser = () => {
   // const { currentUser } = firebase.auth();
 
   return (dispatch) => {
@@ -73,15 +74,27 @@ export const myBreadCrumbs = () => {
             .startAt(LO_LNG)
             .endAt(HI_LNG)
             .on('value', (lngFilter) => {
-              // console.log(lngFilter.val());
-              // console.log(latFilter.val());
-
               const latLngRange = { ...lngFilter.val(), ...latFilter.val() };
-              // console.log(latLngRange);
-
-              dispatch({ type: MY_BREAD_CRUMBS, payload: latLngRange });
+              dispatch({ type: BREAD_CRUMBS_IN_AREA, payload: latLngRange });
             });
         });
+    });
+  };
+};
+
+
+export const myBreadCrumbs = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref('/breadCrumbs')
+      .orderByChild('userId')
+      .startAt(currentUser.uid)
+      .endAt(currentUser.uid)
+      .on('value', (myCrumbs) => {
+
+      console.log(myCrumbs.val());
+      dispatch({ type: MY_BREAD_CRUMBS, payload: myCrumbs.val() });
     });
   };
 };

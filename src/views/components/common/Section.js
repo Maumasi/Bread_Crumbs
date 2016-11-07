@@ -9,10 +9,10 @@ const styles = {
 };
 
 const Section = (props) => {
-  const { children } = props;
+  const { children, theme } = props;
   const { section } = styles;
   return (
-    <View style={ section }>
+    <View style={ [section, theme] }>
       { children }
     </View>
   );

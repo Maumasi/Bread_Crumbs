@@ -54,8 +54,7 @@ const CustomLayoutSpring = {
 class HambergerStackMenu extends Component {
 
   onEmptySidePress() {
-    const bool = false;
-    this.props.menuClosed(bool);
+    this.props.menuClosed(false);
   }
 
   onMenuItemPress() {
@@ -66,10 +65,21 @@ class HambergerStackMenu extends Component {
     console.log('this is the menu side!');
   }
 
-  allCrumbsFunc() {
-    const bool = true;
-    this.props.menuClosed(bool);
-    Actions.allMyBreadCrumbs();
+  // menu navigation action calls
+
+  crumbMap() {
+    this.props.menuClosed(true);
+    Actions.mapActivities();
+  }
+
+  nearByCrumbs() {
+    this.props.menuClosed(true);
+    Actions.proximityCrumbs();
+  }
+
+  myCrumbs() {
+    this.props.menuClosed(true);
+    Actions.myBreadCrumbs();
   }
 
   signOutUser() {
@@ -94,7 +104,11 @@ class HambergerStackMenu extends Component {
             wrapperTheme={ menuHeader }
           />
 
-          <MenuItem text={ 'My Bread Crumbs' } onPress={ this.allCrumbsFunc.bind(this) } />
+          <MenuItem text={ 'Map' } onPress={ this.crumbMap.bind(this) } />
+
+          <MenuItem text={ 'Bread Crumbs Near Me' } onPress={ this.nearByCrumbs.bind(this) } />
+
+          <MenuItem text={ 'My Bread Crumbs' } onPress={ this.myCrumbs.bind(this) } />
 
           <MenuItem text={ 'Log out' } onPress={ this.signOutUser.bind(this) } />
         </View>

@@ -13,5 +13,5 @@ export default combineReducers({
   menu: MenuState,
   breadCrumbs: BreadCrumbForm,
   mapChange: Map,
-  myCrumbs: BreadCrumbReducer,
+  dbCrumbs: BreadCrumbReducer,
 });
