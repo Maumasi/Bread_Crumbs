@@ -17,3 +17,4 @@ export * from 'Bread_Crumbs/src/views/components/common/SwitchRadioButton';
 export * from 'Bread_Crumbs/src/views/components/common/CircleButton';
 export * from 'Bread_Crumbs/src/views/components/common/NearByCrumbListItem';
 export * from 'Bread_Crumbs/src/views/components/common/UserBreadCrumbListItem';
+export * from 'Bread_Crumbs/src/views/components/common/ConfirmPopUp';

@@ -1,6 +1,7 @@
 import {
   BREAD_CRUMB_UPDATE,
   BREAD_CRUMB_CREATED,
+  BREAD_CRUMB_UPDATED
 } from 'Bread_Crumbs/src/controllers/actions/types';
 
 const INIT_STATE = {
@@ -24,6 +25,10 @@ const BreadCrumbForm = (state = INIT_STATE, action) => {
       break;
 
     case BREAD_CRUMB_CREATED:
+      result = INIT_STATE;
+      break;
+
+    case BREAD_CRUMB_UPDATED:
       result = INIT_STATE;
       break;
 

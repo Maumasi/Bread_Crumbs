@@ -14,7 +14,8 @@ import {
   MenuItem,
   TextArea,
   Input,
-  SwitchRadioButton
+  SwitchRadioButton,
+  ConfirmPopUp,
 } from 'Bread_Crumbs/src/views/components/';
 
 // partials
@@ -61,6 +62,7 @@ const styles = {
 };
 
 class EditBreadCrumb extends Component {
+  state = { ConfirmDelete: false };
 
   componentWillMount() {
     _.each(this.props.breadCrumb, (value, prop) => {
@@ -94,29 +96,6 @@ class EditBreadCrumb extends Component {
     console.log('edit testing');
     console.log(this.props.breadCrumb);
     console.log(this.props);
-    // navigator.geolocation.getCurrentPosition((geo) => {
-    //
-    //   const date = new Date().toISOString();
-    //   this.props.updateBreadCrumb({
-    //     prop: 'createdAt',
-    //     value: date,
-    //   });
-    //
-    //   this.props.updateBreadCrumb({
-    //     prop: 'userId',
-    //     value: user.uid,
-    //   }); // updateBreadCrumb
-    //
-    //   this.props.createBreadCrumb({
-    //     title,
-    //     message,
-    //     discoverable,
-    //     lat: geo.coords.latitude,
-    //     lng: geo.coords.longitude,
-    //     createdAt: date,
-    //     userId: user.uid,
-    //   });
-    // }); // getCurrentPosition
   }
 
   render() {
@@ -182,9 +161,21 @@ class EditBreadCrumb extends Component {
         <Button
           theme={ styles.buttonTheme }
           buttonTitle={ 'Save Edit' }
-
           onPress={ this.onButtonPress.bind(this) }
         />
+
+        <Button
+          theme={ styles.buttonTheme }
+          buttonTitle={ 'Delete' }
+          onPress={ () => this.setState({ ConfirmDelete: !this.state.ConfirmDelete }) }
+        />
+
+        <ConfirmPopUp
+          visible={ this.state.ConfirmDelete }
+          onNo={ () => this.setState({ ConfirmDelete: !this.state.ConfirmDelete }) }
+        >
+          <Text>Did you want to delete this?</Text>
+        </ConfirmPopUp>
 
         { this.menuDisplay() }
       </ScreenWrapper>

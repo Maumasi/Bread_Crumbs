@@ -14,6 +14,7 @@ import {
   BreadCrumbMap,
   MyBreadCrumbs,
   ProximityCrumbs,
+  DeleteUserBreadCrumbPopUp,
 } from 'Bread_Crumbs/src/views/screens/';
 
 // test components

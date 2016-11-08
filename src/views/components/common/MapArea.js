@@ -24,16 +24,19 @@ const styles = {
 
 const MapArea = (props) => {
 
-  const { followUser, goToMarker } = props;
+  const { followUser, goToMarker, markerCollection } = props;
 
-  const markers = [
-    {
-      latitude: 28.574970,
-      longitude: -81.305334,
-      title: 'Foo Place',
-      subtitle: '1234 Foo Drive',
-    },
-  ];
+  // const markers = [
+  //   {
+  //     latitude: 28.574970,
+  //     longitude: -81.305334,
+  //     title: 'Foo Place',
+  //     subtitle: '1234 Foo Drive',
+  //   },
+  // ];
+//  image: Image.propTypes.source
+// onFocus: function
+// onBlur: function
 
 // [mapView setCenterCoordinate:location animated:YES];
   return (
@@ -42,8 +45,9 @@ const MapArea = (props) => {
         style={ styles.mapArea }
         followUserLocation={ followUser }
         showsUserLocation={ followUser }
-        annotations={ markers }
+        annotations={ markerCollection }
         region={ goToMarker }
+        animateDrop={ true }
       />
     </ScreenWrapper>
   );

@@ -46,17 +46,6 @@ class ProximityCrumbs extends Component {
     this.buildDataSource(nextProps);
   }
 
-  menuDisplay() {
-    let result;
-
-    if (this.props.menuState) {
-      result = <HambergerStackMenu />;
-    } else {
-      result = null;
-    }
-    return result;
-  }
-
   // helper for data
   buildDataSource({ nearByCrumbs }) {
     const crumbs = new ListView.DataSource({
@@ -68,6 +57,17 @@ class ProximityCrumbs extends Component {
 
   renderRow(nearByCrumbs) {
     return <NearByCrumbListItem breadCrumb={ nearByCrumbs } />;
+  }
+
+  menuDisplay() {
+    let result;
+
+    if (this.props.menuState) {
+      result = <HambergerStackMenu />;
+    } else {
+      result = null;
+    }
+    return result;
   }
 
   render() {

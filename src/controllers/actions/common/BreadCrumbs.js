@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import {
   BREAD_CRUMB_UPDATE,
   BREAD_CRUMB_CREATED,
+  BREAD_CRUMB_UPDATED,
   MY_BREAD_CRUMBS,
   BREAD_CRUMBS_IN_AREA,
 } from 'Bread_Crumbs/src/controllers/actions/types';
@@ -56,7 +57,7 @@ export const breadCrumbUpdateDB = (edit) => {
     createdAt,
     userId,
   } = edit.update;
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/breadCrumbs/${ edit.update.breadCrumb.uid }`)
       .set({
         title,
@@ -68,8 +69,8 @@ export const breadCrumbUpdateDB = (edit) => {
         userId,
       })
       .then(() => {
-        // dispatch({ type: BREAD_CRUMB_UPDATED });
-        // Actions.myBreadCrumbs({ type: 'reset' });
+        dispatch({ type: BREAD_CRUMB_UPDATED });
+        Actions.myBreadCrumbs({ type: 'reset' });
       });
   };
 };
