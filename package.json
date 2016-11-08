@@ -1,6 +1,6 @@
 {
   "name": "Bread_Crumbs",
-  "version": "0.1.1",
+  "version": "0.3.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -30,6 +30,13 @@
     "eslint-plugin-react": "5.1.1",
     "jest": "16.0.2",
     "jest-react-native": "16.0.0",
-    "react-test-renderer": "15.3.2"
+    "react-test-renderer": "15.3.2",
+    "gulp": "^3.9.1",
+    "gulp-git": "^1.11.3",
+    "gulp-git-streamed": "^1.8.0",
+    "gulp-gitignore": "^0.1.0",
+    "gulp-replace": "^0.5.4",
+    "yargs": "^6.2.0",
+    "log-me": "^1.0.14"
   }
 }
