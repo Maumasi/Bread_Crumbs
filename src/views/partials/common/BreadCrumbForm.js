@@ -31,12 +31,8 @@ const styles = {
 
   textArea: {
     height: 200,
-    // marginLeft: 10,
-    // marginRight: 10,
     borderRadius: 3,
-    // borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.4)',
-    // padding: 5,
   },
 
   buttonTheme: {
@@ -89,9 +85,6 @@ class BreadCrumbForm extends Component {
           onTintColor={ '#000' }
 
           onValueChange={ (value) => {
-
-            // console.log(this.props);
-
             this.props.updateBreadCrumb({
               prop: 'discoverable',
               value,

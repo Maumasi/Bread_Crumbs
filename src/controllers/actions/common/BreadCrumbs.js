@@ -126,3 +126,16 @@ export const myBreadCrumbs = () => {
       });
   };
 };
+
+// delete a user bread crumb
+export const deleteBreadCrumb = ({ uid }) => {
+  // const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/breadCrumbs/${ uid }`)
+      .remove()
+      .then(() => {
+        Actions.myBreadCrumbs({ type: 'reset' });
+      });
+  };
+};

@@ -21,9 +21,6 @@ import { BreadCrumbForm } from 'Bread_Crumbs/src/views/partials/';
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
 
-// display menu
-// import { MenuDisplay } from 'Bread_Crumbs/src/views/logicRender/';
-
 // themes
 import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
 const { loginInput } = themes;
@@ -48,12 +45,8 @@ const styles = {
 
   textArea: {
     height: 200,
-    // marginLeft: 10,
-    // marginRight: 10,
     borderRadius: 3,
-    // borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.4)',
-    // padding: 5,
   },
 
   buttonTheme: {
@@ -79,7 +72,6 @@ class CreateBreadCrumb extends Component {
       prop: 'discoverable',
       value,
     });
-    // console.log(value);
   }
 
   onButtonPress() {

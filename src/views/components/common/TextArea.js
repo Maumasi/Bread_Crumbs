@@ -2,16 +2,9 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 
-// themes
-import themes from 'Bread_Crumbs/src/views/stylesheets/themes';
-// const { loginInput } = themes;
-
 const styles = {
   lableStyle: {
     fontSize: 18,
-    // fontWeight: 'bold',
-    // flex: 2,
-    // color: 'rgba(0, 0, 0, 0.8)',
     padding: 5,
     height: 100,
     fontWeight: 'bold',

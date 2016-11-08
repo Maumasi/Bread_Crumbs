@@ -11,7 +11,6 @@ class MenuDisplay extends Component {
 
   shouldMenuBeDisplayed() {
     let result;
-    console.log(this.props);
 
     switch (this.props.menu.menuState) {
       case true:

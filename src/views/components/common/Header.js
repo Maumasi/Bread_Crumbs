@@ -9,16 +9,12 @@ const styles = {
     fontFamily: 'Futura-Medium',
     color: 'rgba(0, 0, 0, 0.5)',
     marginBottom: 30,
-    // textAlign: 'center',
   },
   headerWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,
     paddingTop: 65,
-    // height: 80,
-    // backgroundColor: '#000',
-    // elevation: 2,
     position: 'relative',
   },
 };

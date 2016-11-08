@@ -33,7 +33,6 @@ const styles = {
 class MyBreadCrumbs extends Component {
 
   componentWillMount() {
-    // console.log(this.props);
     this.props.myBreadCrumbs();
 
     this.buildDataSource(this.props);
@@ -70,8 +69,6 @@ class MyBreadCrumbs extends Component {
   }
 
   render() {
-
-    // console.log(this.props);
     return (
       <View style={ [styles.theme] }>
         <Header
@@ -97,8 +94,6 @@ const mapStateToProps = (state) => {
   const myCrumbs = _.map(state.dbCrumbs, (val, uid) => {
     return { ...val, uid };
   });
-
-  // const { myCrumbs } = state;
 
   return { myCrumbs, menuState };
 };

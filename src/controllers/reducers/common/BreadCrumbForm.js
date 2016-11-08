@@ -1,7 +1,7 @@
 import {
   BREAD_CRUMB_UPDATE,
   BREAD_CRUMB_CREATED,
-  BREAD_CRUMB_UPDATED
+  BREAD_CRUMB_UPDATED,
 } from 'Bread_Crumbs/src/controllers/actions/types';
 
 const INIT_STATE = {

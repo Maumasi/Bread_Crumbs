@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-// import state from 'Bread_Crumbs/src/controllers/actions/';
 
 // screens
 import {
-  // HambergerStackMenu,
   LogInScreen,
-  // AppLoadingScreen,
   CreateBreadCrumb,
   EditBreadCrumb,
   BreadCrumbMap,
@@ -43,7 +40,6 @@ const styles = {
 class AppRouter extends Component {
 
 //   <Scene key={ 'userLogin' } component={ LogInScreen } title={ ' ' } initial />
-// MyBreadCrumbs
   render() {
     return (
       <Router

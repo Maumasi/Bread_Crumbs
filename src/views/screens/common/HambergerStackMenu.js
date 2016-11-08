@@ -29,7 +29,6 @@ const styles = {
     height,
   },
   menuHeader: {
-    // paddingTop: 5,
     paddingBottom: 5,
     alignItems: 'flex-start',
   },

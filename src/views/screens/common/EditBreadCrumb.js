@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Switch, Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { updateBreadCrumb, breadCrumbUpdateDB } from 'Bread_Crumbs/src/controllers/actions/';
+import { updateBreadCrumb, breadCrumbUpdateDB, deleteBreadCrumb } from 'Bread_Crumbs/src/controllers/actions/';
 import firebase from 'firebase';
 
 // components
@@ -48,12 +48,8 @@ const styles = {
 
   textArea: {
     height: 200,
-    // marginLeft: 10,
-    // marginRight: 10,
     borderRadius: 3,
-    // borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.4)',
-    // padding: 5,
   },
 
   buttonTheme: {
@@ -86,21 +82,19 @@ class EditBreadCrumb extends Component {
       prop: 'discoverable',
       value,
     });
-    console.log(this.props);
   }
 
   onButtonPress() {
-
     this.props.breadCrumbUpdateDB({ update: this.props });
+  }
 
-    console.log('edit testing');
-    console.log(this.props.breadCrumb);
-    console.log(this.props);
+  onConfirmDelete() {
+    const { uid } = this.props.breadCrumb;
+    this.props.deleteBreadCrumb({ uid });
+    this.setState({ ConfirmDelete: false });
   }
 
   render() {
-
-    console.log(this.props);
     return (
       <ScreenWrapper theme={ styles.theme }>
         <Header
@@ -148,9 +142,6 @@ class EditBreadCrumb extends Component {
           onTintColor={ '#000' }
 
           onValueChange={ (value) => {
-
-            // console.log(this.props);
-
             this.props.updateBreadCrumb({
               prop: 'discoverable',
               value,
@@ -172,6 +163,7 @@ class EditBreadCrumb extends Component {
 
         <ConfirmPopUp
           visible={ this.state.ConfirmDelete }
+          onYes={ this.onConfirmDelete.bind(this) }
           onNo={ () => this.setState({ ConfirmDelete: !this.state.ConfirmDelete }) }
         >
           <Text>Did you want to delete this?</Text>
@@ -212,5 +204,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-EditBreadCrumb = connect(mapStateToProps, { updateBreadCrumb, breadCrumbUpdateDB })(EditBreadCrumb);
+EditBreadCrumb = connect(mapStateToProps, { updateBreadCrumb, breadCrumbUpdateDB, deleteBreadCrumb })(EditBreadCrumb);
 export { EditBreadCrumb };

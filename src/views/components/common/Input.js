@@ -8,7 +8,6 @@ const { loginInput, boxShadow } = themes;
 
 const styles = {
   input: {
-    // color: 'rgba(0, 0, 0, 0.8)',
     fontSize: 18,
     lineHeight: 23,
     flex: 1,

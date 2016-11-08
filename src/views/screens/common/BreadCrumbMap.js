@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { mapMove, breadCrumbsNearUser } from 'Bread_Crumbs/src/controllers/actions/';
-// import { breadCrumbsNearUser } from 'Bread_Crumbs/src/controllers/actions/';
 
 import { MapArea, CircleButton } from 'Bread_Crumbs/src/views/components/';
 
@@ -26,7 +25,6 @@ class BreadCrumbMap extends Component {
 
   state = { Markers: [] };
   componentWillMount() {
-    // console.log(this.props);
     this.props.breadCrumbsNearUser();
 
     this.collectMapMarkers(this.props);
@@ -40,25 +38,19 @@ class BreadCrumbMap extends Component {
 
   // helper for data
   collectMapMarkers({ nearByCrumbs }) {
-    // console.log(nearByCrumbs);
-
     const markers = _.map(nearByCrumbs, (crumb) => {
-      // console.log({ ...val });
+      const resolveAssetSource = require('resolveAssetSource');
+      const imgSrc = resolveAssetSource(require('Bread_Crumbs/src/views/resources/bread_crumb_pin6x16.png'));
+
       return {
         latitude: crumb.lat,
         longitude: crumb.lng,
         title: crumb.title,
         subtitle: crumb.message,
+        image: imgSrc,
       };
     });
-    // const markers = [
-    //   {
-    //     latitude: 28.574970,
-    //     longitude: -81.305334,
-    //     title: 'Foo Place',
-    //     subtitle: '1234 Foo Drive',
-    //   },
-    // ];
+
     this.setState({ Markers: markers });
   }
 
@@ -106,7 +98,6 @@ const mapStateToProps = (state) => {
     return { ...val, uid };
   });
 
-  // const { myCrumbs } = state;
   return {
     nearByCrumbs,
     mapChange,

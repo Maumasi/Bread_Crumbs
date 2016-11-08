@@ -34,7 +34,6 @@ const styles = {
 class ProximityCrumbs extends Component {
 
   componentWillMount() {
-    // console.log(this.props);
     this.props.breadCrumbsNearUser();
 
     this.buildDataSource(this.props);
@@ -71,8 +70,6 @@ class ProximityCrumbs extends Component {
   }
 
   render() {
-
-    // console.log(this.props);
     return (
       <View style={ [styles.theme] }>
         <Header
@@ -99,8 +96,6 @@ const mapStateToProps = (state) => {
   const nearByCrumbs = _.map(state.dbCrumbs, (val, uid) => {
     return { ...val, uid };
   });
-
-  // const { myCrumbs } = state;
 
   return { nearByCrumbs, menuState };
 };

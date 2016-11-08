@@ -27,10 +27,6 @@ const themes = {
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.3)',
     borderRadius: 3,
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.2,
-    // shadowRadius: 3,
     elevation: 1,
   },
 
@@ -42,7 +38,6 @@ const themes = {
     height: 160,
     resizeMode: 'contain',
     alignSelf: 'center',
-    // marginBottom: 30,
   },
 
   // login form fields

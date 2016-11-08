@@ -5,7 +5,6 @@ import {
 } from 'Bread_Crumbs/src/controllers/actions/types';
 
 export const menuOpened = (bool) => {
-  console.log(bool);
   return {
     type: MENU_OPENED,
     payload: bool,

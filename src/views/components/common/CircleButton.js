@@ -7,12 +7,10 @@ const styles = {
     position: 'absolute',
     zIndex: 2,
     right: ((width / 2) - 100),
-    // elevation: 1,
     top: (height - 120),
   },
 
   buttonTheme: {
-    // backgroundColor: 'rgba(0, 0, 0, 0.7)',
     backgroundColor: 'rgba(26, 188, 156, 0.9)',
     borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.4)',

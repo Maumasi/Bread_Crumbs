@@ -7,7 +7,7 @@ const INIT_STATE = {};
 export default (state = INIT_STATE, action) => {
   const { type } = action;
   let result;
-  
+
   switch (type) {
     case BREAD_CRUMB_UPDATE:
       result = {};

@@ -48,16 +48,12 @@ export const logInUser = ({ email, password }) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => {
         logInSuccess(dispatch, user);
-        console.log(user);
       })
 
       .catch((err) => {
-        console.log(err);
-
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => {
             logInSuccess(dispatch, user);
-            console.log(user);
           })
 
           .catch(() => logInFail(dispatch));
