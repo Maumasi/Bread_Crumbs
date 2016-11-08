@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-
+import { Actions } from 'react-native-router-flux';
 import { Section } from 'Bread_Crumbs/src/views/components/';
 
 const styles = {
@@ -35,12 +35,16 @@ const styles = {
 
 class NearByCrumbListItem extends Component {
 
+  onRowPress() {
+    Actions.viewBreadCrumb({ viewCrumb: this.props.breadCrumb });
+  }
+
   render() {
     const { breadCrumb } = this.props;
     return (
       <View style={ styles.theme }>
         <Section theme={ styles.crumbButton }>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={ this.onRowPress.bind(this) } >
               <Text style={ styles.textTheme }>{ breadCrumb.title }</Text>
           </TouchableOpacity>
         </Section>

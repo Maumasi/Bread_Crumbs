@@ -6,3 +6,4 @@ export * from 'Bread_Crumbs/src/views/screens/common/CreateBreadCrumb';
 export * from 'Bread_Crumbs/src/views/screens/common/BreadCrumbMap';
 export * from 'Bread_Crumbs/src/views/screens/common/ProximityCrumbs';
 export * from 'Bread_Crumbs/src/views/screens/common/MyBreadCrumbs';
+export * from 'Bread_Crumbs/src/views/screens/common/EditBreadCrumb';

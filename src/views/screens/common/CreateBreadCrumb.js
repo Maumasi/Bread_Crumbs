@@ -15,6 +15,9 @@ import {
   SwitchRadioButton
 } from 'Bread_Crumbs/src/views/components/';
 
+// partials
+import { BreadCrumbForm } from 'Bread_Crumbs/src/views/partials/';
+
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
 
@@ -122,49 +125,7 @@ class CreateBreadCrumb extends Component {
           title={ 'Leave a Bread Crumb' }
         />
 
-        <Input
-          lable={ 'Title:' }
-          placeholder={ 'Short and Sweet' }
-          style={ [styles.textTitle, loginInput] }
-          inputTheme={{ flex: 5 }}
-          autoFocus
-
-          onChangeText={ (value) => {
-            this.props.updateBreadCrumb({
-              prop: 'title',
-              value,
-            });
-          }}
-        />
-
-        <TextArea
-          multiline
-          placeholder={ 'Leave a Bread Cumb in the world!' }
-          autoCorrect
-          inputTheme={ [loginInput, styles.textArea] }
-          autoCapitalize={ 'sentences' }
-
-          onChangeText={ (value) => {
-            this.props.updateBreadCrumb({
-              prop: 'message',
-              value,
-            });
-          }}
-        />
-
-        <SwitchRadioButton
-          text={ 'Hide Crumb untill discovered' }
-          value={ this.props.discoverable }
-          tintColor={ '#000' }
-          onTintColor={ '#000' }
-
-          onValueChange={ (value) => {
-            this.props.updateBreadCrumb({
-              prop: 'discoverable',
-              value,
-            });
-          }}
-        />
+        <BreadCrumbForm { ...this.props } />
 
         <Button
           theme={ styles.buttonTheme }

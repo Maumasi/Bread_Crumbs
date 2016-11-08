@@ -45,6 +45,35 @@ export const createBreadCrumb = ({
   };
 };
 
+// making updated changes to bread crumbs
+export const breadCrumbUpdateDB = (edit) => {
+  const {
+    title,
+    message,
+    discoverable,
+    lat,
+    lng,
+    createdAt,
+    userId,
+  } = edit.update;
+  return () => {
+    firebase.database().ref(`/breadCrumbs/${ edit.update.breadCrumb.uid }`)
+      .set({
+        title,
+        message,
+        discoverable,
+        lat,
+        lng,
+        createdAt,
+        userId,
+      })
+      .then(() => {
+        // dispatch({ type: BREAD_CRUMB_UPDATED });
+        // Actions.myBreadCrumbs({ type: 'reset' });
+      });
+  };
+};
+
 
 // get all user bread crumbs
 export const breadCrumbsNearUser = () => {
@@ -92,9 +121,7 @@ export const myBreadCrumbs = () => {
       .startAt(currentUser.uid)
       .endAt(currentUser.uid)
       .on('value', (myCrumbs) => {
-
-      console.log(myCrumbs.val());
-      dispatch({ type: MY_BREAD_CRUMBS, payload: myCrumbs.val() });
-    });
+        dispatch({ type: MY_BREAD_CRUMBS, payload: myCrumbs.val() });
+      });
   };
 };

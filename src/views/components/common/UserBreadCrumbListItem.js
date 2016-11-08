@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-
+import { Actions } from 'react-native-router-flux';
 import { Section } from 'Bread_Crumbs/src/views/components/';
 
 const styles = {
@@ -17,7 +17,7 @@ const styles = {
   },
 
   crumbButton: {
-    flex: 4,
+    flex: 5,
   },
 
   textTheme: {
@@ -35,13 +35,29 @@ const styles = {
 
 class UserBreadCrumbListItem extends Component {
 
+  onRowPress() {
+    // Actions.viewBreadCrumb({ breadCrumb: this.props.breadCrumb });
+  }
+
+  editBreadCrumb() {
+    Actions.editBreadCrumb({ breadCrumb: this.props.breadCrumb });
+  }
+
+
   render() {
     const { breadCrumb } = this.props;
+
     return (
-      <View style={ styles.theme }>
-        <Section theme={ styles.crumbButton }>
-            <TouchableOpacity>
-              <Text style={ styles.textTheme }>{ breadCrumb.title }</Text>
+      <View style={ styles.theme } >
+        <Section theme={ styles.crumbButton } >
+            <TouchableOpacity onPress={ this.onRowPress.bind(this) } >
+              <Text style={ styles.textTheme } >{ breadCrumb.title }</Text>
+          </TouchableOpacity>
+        </Section>
+
+        <Section theme={ styles.favsButton }>
+            <TouchableOpacity onPress={ this.editBreadCrumb.bind(this) } >
+              <Text style={ styles.textTheme }>Edit</Text>
           </TouchableOpacity>
         </Section>
       </View>

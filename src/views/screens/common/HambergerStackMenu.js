@@ -83,6 +83,7 @@ class HambergerStackMenu extends Component {
   }
 
   signOutUser() {
+    this.props.menuClosed(false);
     firebase.auth().signOut();
     Actions.login();
   }

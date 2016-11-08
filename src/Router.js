@@ -10,6 +10,7 @@ import {
   LogInScreen,
   // AppLoadingScreen,
   CreateBreadCrumb,
+  EditBreadCrumb,
   BreadCrumbMap,
   MyBreadCrumbs,
   ProximityCrumbs,
@@ -53,10 +54,11 @@ class AppRouter extends Component {
               key={ 'userLogin' }
               component={ LogInScreen }
               title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               initial
             />
-
           </Scene>
+
 
           <Scene key={ 'mapActivities' } >
             <Scene
@@ -64,6 +66,7 @@ class AppRouter extends Component {
               component={ BreadCrumbMap }
               renderRightButton={ () => <HambergerStackIcon /> }
               title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               initial
             />
 
@@ -73,6 +76,7 @@ class AppRouter extends Component {
               backTitle={ 'Map' }
               backButtonTextStyle={ styles.mapBackButton }
               title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               renderRightButton={ () => <HambergerStackIcon /> }
             />
           </Scene>
@@ -81,6 +85,7 @@ class AppRouter extends Component {
               key={ 'proximityCrumbs' }
               component={ ProximityCrumbs }
               title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               renderRightButton={ () => <HambergerStackIcon /> }
             />
 
@@ -88,6 +93,15 @@ class AppRouter extends Component {
               key={ 'myBreadCrumbs' }
               component={ MyBreadCrumbs }
               title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
+              renderRightButton={ () => <HambergerStackIcon /> }
+            />
+
+            <Scene
+              key={ 'editBreadCrumb' }
+              component={ EditBreadCrumb }
+              title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               renderRightButton={ () => <HambergerStackIcon /> }
             />
 
