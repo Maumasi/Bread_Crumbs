@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { mapMove, findUser, breadCrumbsNearUser, mapMarkerFocus, mapMarkerBlur } from 'Bread_Crumbs/src/controllers/actions/';
+import { mapMove, createAFav, findUser, breadCrumbsNearUser, mapMarkerFocus, mapMarkerBlur } from 'Bread_Crumbs/src/controllers/actions/';
 
 import { MapArea, CircleButton, GeoMessage } from 'Bread_Crumbs/src/views/components/';
 
@@ -79,14 +79,37 @@ class BreadCrumbMap extends Component {
 
   breadCrumbDisplay() {
     let result;
-    const { title, message, show } = this.props.mapMarker;
+    const {
+      title,
+      message,
+      show,
+      discoverable,
+      lat,
+      lng,
+      createdAt,
+      userId,
+    } = this.props.mapMarker;
+
+    console.log(this.props.mapMarker);
     if (show) {
       result = (
         <GeoMessage
           title={ title }
           message={ message }
           onCloseCrumb={ () => this.props.mapMarkerBlur() }
-          onAddCrumb={ () => console.log('add test') }
+          onAddCrumb={ () => {
+            console.log('add to favs');
+            this.props.createAFav({
+              title,
+              message,
+              discoverable,
+              lat,
+              lng,
+              createdAt,
+              userId,
+            });
+
+          }}
         />
       );
     } else {
@@ -127,19 +150,14 @@ class BreadCrumbMap extends Component {
 
     if (latitude !== null && longitude !== null) {
       result = this.props.mapChange.marker;
-      // this.setState({ onUser: true });
     } else {
-      // this.setState({ onUser: true });
       result = {
         latitude: lat,
         longitude: lng,
         latitudeDelta: 0.003,
         longitudeDelta: 0.003,
       };
-
-      // this.setState({ onUser: true });
     } // if
-
     return result;
   } // findARegion
 
@@ -148,8 +166,6 @@ class BreadCrumbMap extends Component {
   }
 
   render() {
-
-    console.log(this.props);
     return (
       <View style={ [styles.wrapper] }>
         <View>
@@ -191,5 +207,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-BreadCrumbMap = connect(mapStateToProps, { mapMove, findUser, breadCrumbsNearUser, mapMarkerFocus, mapMarkerBlur })(BreadCrumbMap);
+BreadCrumbMap = connect(mapStateToProps, { mapMove, createAFav, findUser, breadCrumbsNearUser, mapMarkerFocus, mapMarkerBlur })(BreadCrumbMap);
 export { BreadCrumbMap };

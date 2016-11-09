@@ -7,6 +7,7 @@ import {
   BREAD_CRUMB_UPDATED,
   MY_BREAD_CRUMBS,
   BREAD_CRUMBS_IN_AREA,
+  FAV_CREATED,
 } from 'Bread_Crumbs/src/controllers/actions/types';
 
 // track bread crumb editing within app
@@ -29,7 +30,9 @@ export const createBreadCrumb = ({
 }) => {
 
   return (dispatch) => {
-    firebase.database().ref('/breadCrumbs')
+
+    const { currentUser } = firebase.auth();
+    firebase.database().ref(`/users/${currentUser.uid}/myBreadCrumbs`)
       .push({
         title,
         message,
@@ -39,10 +42,22 @@ export const createBreadCrumb = ({
         createdAt,
         userId,
       })
-    .then(() => {
-      dispatch({ type: BREAD_CRUMB_CREATED });
-      Actions.mapArea({ type: 'reset' });
-    });
+      .then(() => {
+        firebase.database().ref('/breadCrumbs')
+          .push({
+            title,
+            message,
+            discoverable,
+            lat,
+            lng,
+            createdAt,
+            userId,
+          })
+        .then(() => {
+          dispatch({ type: BREAD_CRUMB_CREATED });
+          Actions.mapArea({ type: 'reset' });
+        });
+      });
   };
 };
 
@@ -137,5 +152,40 @@ export const deleteBreadCrumb = ({ uid }) => {
       .then(() => {
         Actions.myBreadCrumbs({ type: 'reset' });
       });
+  };
+};
+
+// bread crumb favs
+
+// create a fav
+export const createAFav = ({
+  title,
+  message,
+  discoverable,
+  lat,
+  lng,
+  createdAt,
+  userId,
+}) => {
+  return (dispatch) => {
+    const { currentUser } = firebase.auth();
+    firebase.database().ref(`/users/${currentUser.uid}/favs`)
+      .push({
+        title,
+        message,
+        discoverable,
+        lat,
+        lng,
+        createdAt,
+        userId,
+      })
+    .then(() => {
+      console.log('saved a fav');
+      // dispatch({ type: FAV_CREATED });
+      // Actions.mapArea({ type: 'reset' });
+    })
+    .catch(() => {
+      console.log('failed to save');
+    });
   };
 };
