@@ -7,6 +7,7 @@ import {
   BREAD_CRUMB_UPDATED,
   MY_BREAD_CRUMBS,
   BREAD_CRUMBS_IN_AREA,
+  MY_FAV_CRUMBS,
   FAV_CREATED,
 } from 'Bread_Crumbs/src/controllers/actions/types';
 
@@ -30,9 +31,7 @@ export const createBreadCrumb = ({
 }) => {
 
   return (dispatch) => {
-
-    const { currentUser } = firebase.auth();
-    firebase.database().ref(`/users/${currentUser.uid}/myBreadCrumbs`)
+    firebase.database().ref('/breadCrumbs')
       .push({
         title,
         message,
@@ -42,22 +41,10 @@ export const createBreadCrumb = ({
         createdAt,
         userId,
       })
-      .then(() => {
-        firebase.database().ref('/breadCrumbs')
-          .push({
-            title,
-            message,
-            discoverable,
-            lat,
-            lng,
-            createdAt,
-            userId,
-          })
-        .then(() => {
-          dispatch({ type: BREAD_CRUMB_CREATED });
-          Actions.mapArea({ type: 'reset' });
-        });
-      });
+    .then(() => {
+      dispatch({ type: BREAD_CRUMB_CREATED });
+      Actions.mapArea({ type: 'reset' });
+    });
   };
 };
 
@@ -127,7 +114,7 @@ export const breadCrumbsNearUser = () => {
   };
 };
 
-
+// collect user's bread crumbs
 export const myBreadCrumbs = () => {
   const { currentUser } = firebase.auth();
 
@@ -187,5 +174,30 @@ export const createAFav = ({
     .catch(() => {
       console.log('failed to save');
     });
+  };
+};
+
+
+// select favorited bread crumbs
+export const myFavCrumbs = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/favs`)
+      .on('value', (myFavs) => {
+        dispatch({ type: MY_FAV_CRUMBS, payload: myFavs.val() });
+      });
+  };
+};
+
+export const removeFav = (uid) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/favs/${uid}`)
+      .remove()
+      .then(() => {
+        Actions.favCrumbs({ type: 'reset' });
+      });
   };
 };

@@ -107,7 +107,7 @@ class BreadCrumbEditForm extends Component {
         />
 
         <SwitchRadioButton
-          text={ 'Hide Crumb untill discovered' }
+          text={ 'Hide Crumb For Now' }
           value={ this.props.discoverable }
           tintColor={ '#000' }
           onTintColor={ '#000' }

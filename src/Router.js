@@ -12,6 +12,7 @@ import {
   EditBreadCrumb,
   BreadCrumbMap,
   MyBreadCrumbs,
+  MyFavs,
   ProximityCrumbs,
   DeleteUserBreadCrumbPopUp,
 } from 'Bread_Crumbs/src/views/screens/';
@@ -82,6 +83,14 @@ class AppRouter extends Component {
             <Scene
               key={ 'proximityCrumbs' }
               component={ ProximityCrumbs }
+              title={ ' ' }
+              titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
+              renderRightButton={ () => <HambergerStackIcon /> }
+            />
+
+            <Scene
+              key={ 'favCrumbs' }
+              component={ MyFavs }
               title={ ' ' }
               titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               renderRightButton={ () => <HambergerStackIcon /> }

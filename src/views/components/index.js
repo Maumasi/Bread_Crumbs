@@ -17,3 +17,4 @@ export * from 'Bread_Crumbs/src/views/components/common/NearByCrumbListItem';
 export * from 'Bread_Crumbs/src/views/components/common/UserBreadCrumbListItem';
 export * from 'Bread_Crumbs/src/views/components/common/ConfirmPopUp';
 export * from 'Bread_Crumbs/src/views/components/common/GeoMessage';
+export * from 'Bread_Crumbs/src/views/components/common/MyFavsListItems';

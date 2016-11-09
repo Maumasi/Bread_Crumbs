@@ -81,6 +81,11 @@ class HambergerStackMenu extends Component {
     Actions.myBreadCrumbs();
   }
 
+  myFavs() {
+    this.props.menuClosed(true);
+    Actions.favCrumbs();
+  }
+
   signOutUser() {
     this.props.menuClosed(false);
     firebase.auth().signOut();
@@ -105,6 +110,8 @@ class HambergerStackMenu extends Component {
           />
 
           <MenuItem text={ 'Map' } onPress={ this.crumbMap.bind(this) } />
+
+          <MenuItem text={ 'My Favs' } onPress={ this.myFavs.bind(this) } />
 
           <MenuItem text={ 'Bread Crumbs Near Me' } onPress={ this.nearByCrumbs.bind(this) } />
 

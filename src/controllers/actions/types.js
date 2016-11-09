@@ -18,6 +18,7 @@ export const BREAD_CRUMB_UPDATED = 'bread_crumb_updated';
 
 // user favs
 export const FAV_CREATED = 'fav_created';
+export const MY_FAV_CRUMBS = 'my_fav_crumbs';
 
 // map
 export const MAP_MOVE = 'map_move';
