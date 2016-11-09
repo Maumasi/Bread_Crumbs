@@ -16,9 +16,17 @@ const styles = {
 
 const MapArea = (props) => {
 
-  const { followUser, goToMarker, markerCollection, onMarker } = props;
+  const { followUser, goToMarker, markerCollection, onDragMap } = props;
 // onFocus: function
 // onBlur: function
+
+  let newRegion;
+  if (goToMarker.latitude !== null && goToMarker.longitude !== null) {
+    newRegion = goToMarker;
+  } else {
+    newRegion = {};
+  }
+
   return (
     <ScreenWrapper>
       <MapView
@@ -26,8 +34,8 @@ const MapArea = (props) => {
         followUserLocation={ followUser }
         showsUserLocation={ followUser }
         annotations={ markerCollection }
-        region={ goToMarker }
-        onAnnotationPress={ onMarker }
+        region={ newRegion }
+        onRegionChangeComplete={ onDragMap }
       />
     </ScreenWrapper>
   );

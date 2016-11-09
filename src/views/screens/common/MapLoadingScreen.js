@@ -1,5 +1,5 @@
 // app loading screen
-
+import { Actions } from 'react-native-router-flux';
 import React, { Component } from 'react';
 import { Image, StatusBar } from 'react-native';
 import { Header, ScreenWrapper, LoadingSpinner } from 'Bread_Crumbs/src/views/components/';
@@ -15,7 +15,11 @@ const styles = {
   },
 };
 
-class AppLoadingScreen extends Component {
+class MapLoadingScreen extends Component {
+
+  componentWillMount() {
+    Actions.mapActivities();
+  }
 
   render() {
     return (
@@ -34,4 +38,4 @@ class AppLoadingScreen extends Component {
   } // render
 } // class
 
-export { AppLoadingScreen };
+export { MapLoadingScreen };

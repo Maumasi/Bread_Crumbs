@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 // screens
 import {
   LogInScreen,
+  LoadingScreen,
+  MapLoadingScreen,
   CreateBreadCrumb,
   EditBreadCrumb,
   BreadCrumbMap,
@@ -15,7 +17,7 @@ import {
 } from 'Bread_Crumbs/src/views/screens/';
 
 // test components
-import { MapArea, HambergerStackIcon } from 'Bread_Crumbs/src/views/components/';
+import { MapArea, HambergerStackIcon, ConfirmPopUp } from 'Bread_Crumbs/src/views/components/';
 
 const styles = {
   routerNavigationBarStyle: {
@@ -76,7 +78,6 @@ class AppRouter extends Component {
               titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               renderRightButton={ () => <HambergerStackIcon /> }
             />
-          </Scene>
 
             <Scene
               key={ 'proximityCrumbs' }
@@ -101,6 +102,7 @@ class AppRouter extends Component {
               titleStyle={{ color: 'rgba(0, 0, 0, 0)' }}
               renderRightButton={ () => <HambergerStackIcon /> }
             />
+          </Scene>
 
       </Router>
     );

@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { mapMove, breadCrumbsNearUser } from 'Bread_Crumbs/src/controllers/actions/';
+import { mapMove, findUser, breadCrumbsNearUser, mapMarkerFocus, mapMarkerBlur } from 'Bread_Crumbs/src/controllers/actions/';
 
-import { MapArea, CircleButton } from 'Bread_Crumbs/src/views/components/';
+import { MapArea, CircleButton, GeoMessage } from 'Bread_Crumbs/src/views/components/';
 
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
@@ -23,9 +23,15 @@ const styles = {
 };
 class BreadCrumbMap extends Component {
 
-  state = { Markers: [] };
+  state = { Markers: [], lat: 0, lng: 0, onUser: true };
+
   componentWillMount() {
     this.props.breadCrumbsNearUser();
+
+    navigator.geolocation.getCurrentPosition((geo) => {
+      const { latitude, longitude } = geo.coords;
+      this.setState({ lat: latitude, lng: longitude });
+    });
 
     this.collectMapMarkers(this.props);
   }
@@ -48,12 +54,17 @@ class BreadCrumbMap extends Component {
         title: crumb.title,
         subtitle: crumb.message,
         image: imgSrc,
+        onFocus: () => {
+          this.props.mapMarkerFocus(crumb);
+        },
+        onBlur: () => {
+          this.props.mapMarkerBlur();
+        },
       };
     });
 
     this.setState({ Markers: markers });
   }
-
 
   menuDisplay() {
     let result;
@@ -65,24 +76,97 @@ class BreadCrumbMap extends Component {
     }
     return result;
   }
+
+  breadCrumbDisplay() {
+    let result;
+    const { title, message, show } = this.props.mapMarker;
+    if (show) {
+      result = (
+        <GeoMessage
+          title={ title }
+          message={ message }
+          onCloseCrumb={ () => this.props.mapMarkerBlur() }
+          onAddCrumb={ () => console.log('add test') }
+        />
+      );
+    } else {
+      result = null;
+    }
+    return result;
+  }
+
+  renderMainMapButton() {
+    let result;
+    if (!this.props.mapChange.focusOnUser) {
+
+      result = (
+        <CircleButton
+          onPress={ () => {
+            this.props.findUser();
+          }}
+          text={ 'Back To You' }
+        />
+      );
+    } else {
+      result = (
+        <CircleButton
+          onPress={ () => {
+            Actions.createBreadCrumb();
+          }}
+          text={ 'Drop Bread Crumb' }
+        />
+      );
+    }
+    return result;
+  } // render main map button
+
+  findARegion() {
+    let result;
+    const { latitude, longitude } = this.props.mapChange.marker;
+    const { lat, lng } = this.state;
+
+    if (latitude !== null && longitude !== null) {
+      result = this.props.mapChange.marker;
+      // this.setState({ onUser: true });
+    } else {
+      // this.setState({ onUser: true });
+      result = {
+        latitude: lat,
+        longitude: lng,
+        latitudeDelta: 0.003,
+        longitudeDelta: 0.003,
+      };
+
+      // this.setState({ onUser: true });
+    } // if
+
+    return result;
+  } // findARegion
+
+  mapDragFinish() {
+    // this.setState({ onUser: false });
+  }
+
   render() {
+
+    console.log(this.props);
     return (
       <View style={ [styles.wrapper] }>
         <View>
           <MapArea
             followUser={ this.props.mapChange.focusOnUser }
-            region={ this.props.mapChange.marker }
+            goToMarker={ this.findARegion() }
             markerCollection={ this.state.Markers }
+            onDragMap={ this.mapDragFinish.bind(this) }
           />
           <View style={ styles.statusBarBack } />
 
           <View>
-            <CircleButton
-              onPress={ () => Actions.createBreadCrumb() }
-              text={ 'Drop Bread Crumb' }
-            />
+            { this.renderMainMapButton() }
           </View>
         </View>
+
+        { this.breadCrumbDisplay() }
 
         { this.menuDisplay() }
       </View>
@@ -93,6 +177,7 @@ class BreadCrumbMap extends Component {
 const mapStateToProps = (state) => {
   const { mapChange } = state;
   const { menuState } = state.menu;
+  const { mapMarker } = state;
 
   const nearByCrumbs = _.map(state.dbCrumbs, (val, uid) => {
     return { ...val, uid };
@@ -101,9 +186,10 @@ const mapStateToProps = (state) => {
   return {
     nearByCrumbs,
     mapChange,
+    mapMarker,
     menuState,
   };
 };
 
-BreadCrumbMap = connect(mapStateToProps, { mapMove, breadCrumbsNearUser })(BreadCrumbMap);
+BreadCrumbMap = connect(mapStateToProps, { mapMove, findUser, breadCrumbsNearUser, mapMarkerFocus, mapMarkerBlur })(BreadCrumbMap);
 export { BreadCrumbMap };

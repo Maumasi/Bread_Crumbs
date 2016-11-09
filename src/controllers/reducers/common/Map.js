@@ -1,4 +1,4 @@
-import { MAP_MOVE } from 'Bread_Crumbs/src/controllers/actions/types';
+import { MAP_MOVE, MAP_FOCUS_ON_USER } from 'Bread_Crumbs/src/controllers/actions/types';
 
 const INIT_STATE = {
   marker: {
@@ -16,7 +16,19 @@ const Map = (state = INIT_STATE, action) => {
 
   switch (type) {
     case MAP_MOVE:
-      result = { ...state, focusOnUser: false, [payload.prop]: payload.value };
+      result = {
+        focusOnUser: false,
+        marker: {
+          latitude: payload.lat,
+          longitude: payload.lng,
+          latitudeDelta: 0.003,
+          longitudeDelta: 0.003,
+        },
+      };
+      break;
+
+    case MAP_FOCUS_ON_USER:
+      result = { ...state, focusOnUser: true };
       break;
 
     default:

@@ -3,7 +3,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import { myBreadCrumbs } from 'Bread_Crumbs/src/controllers/actions/';
+import { Actions } from 'react-native-router-flux';
+import { myBreadCrumbs, mapMove } from 'Bread_Crumbs/src/controllers/actions/';
 
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
@@ -56,7 +57,7 @@ class MyBreadCrumbs extends Component {
   }
 
   // helper for data
-  buildDataSource({ myCrumbs }) {
+  buildDataSource({ myCrumbs, mapMove }) {
     const crumbs = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
@@ -65,7 +66,22 @@ class MyBreadCrumbs extends Component {
   }
 
   renderRow(myCrumbs) {
-    return <UserBreadCrumbListItem breadCrumb={ myCrumbs } />;
+    return (
+      <UserBreadCrumbListItem
+        breadCrumb={ myCrumbs }
+        onRowPress={ () => {
+          const marker = {
+            lat: myCrumbs.lat,
+            lng: myCrumbs.lng,
+            delta: 0.03,
+            focus: true,
+          };
+
+          // bring user to a selected map marker
+          Actions.mapArea({ type: 'reset' });
+          this.props.mapMove(marker);
+        }}
+      />);
   }
 
   render() {
@@ -79,7 +95,7 @@ class MyBreadCrumbs extends Component {
         <ListView
         enableEmptySections
         dataSource={ this.dataSource }
-        renderRow={ this.renderRow }
+        renderRow={ this.renderRow.bind(this) }
         />
 
         { this.menuDisplay() }
@@ -91,13 +107,15 @@ class MyBreadCrumbs extends Component {
 
 const mapStateToProps = (state) => {
   const { menuState } = state.menu;
+  const { mapChange } = state;
+
   const myCrumbs = _.map(state.dbCrumbs, (val, uid) => {
     return { ...val, uid };
   });
 
-  return { myCrumbs, menuState };
+  return { myCrumbs, menuState, mapChange };
 };
 
 
-MyBreadCrumbs = connect(mapStateToProps, { myBreadCrumbs })(MyBreadCrumbs);
+MyBreadCrumbs = connect(mapStateToProps, { myBreadCrumbs, mapMove })(MyBreadCrumbs);
 export { MyBreadCrumbs };

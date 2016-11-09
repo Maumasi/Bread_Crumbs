@@ -68,7 +68,7 @@ class HambergerStackMenu extends Component {
 
   crumbMap() {
     this.props.menuClosed(true);
-    Actions.mapActivities();
+    Actions.mapArea({ type: 'reset' });
   }
 
   nearByCrumbs() {

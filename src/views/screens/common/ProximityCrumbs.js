@@ -3,7 +3,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { View, Text, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import { breadCrumbsNearUser } from 'Bread_Crumbs/src/controllers/actions/';
+import { Actions } from 'react-native-router-flux';
+import { breadCrumbsNearUser, mapMove } from 'Bread_Crumbs/src/controllers/actions/';
 
 // menu
 import { HambergerStackMenu } from 'Bread_Crumbs/src/views/screens/';
@@ -55,7 +56,22 @@ class ProximityCrumbs extends Component {
   }
 
   renderRow(nearByCrumbs) {
-    return <NearByCrumbListItem breadCrumb={ nearByCrumbs } />;
+    return (
+      <NearByCrumbListItem
+        breadCrumb={ nearByCrumbs }
+        onRowPress={ () => {
+          const marker = {
+            lat: nearByCrumbs.lat,
+            lng: nearByCrumbs.lng,
+            delta: 0.03,
+            focus: true,
+          };
+
+          // bring user to a selected map marker
+          Actions.mapArea({ type: 'reset' });
+          this.props.mapMove(marker);
+        }}
+      />);
   }
 
   menuDisplay() {
@@ -80,7 +96,7 @@ class ProximityCrumbs extends Component {
         <ListView
         enableEmptySections
         dataSource={ this.dataSource }
-        renderRow={ this.renderRow }
+        renderRow={ this.renderRow.bind(this) }
         />
 
         { this.menuDisplay() }
@@ -101,5 +117,5 @@ const mapStateToProps = (state) => {
 };
 
 
-ProximityCrumbs = connect(mapStateToProps, { breadCrumbsNearUser })(ProximityCrumbs);
+ProximityCrumbs = connect(mapStateToProps, { breadCrumbsNearUser, mapMove })(ProximityCrumbs);
 export { ProximityCrumbs };

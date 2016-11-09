@@ -6,6 +6,7 @@ import { MenuState } from 'Bread_Crumbs/src/controllers/reducers/common/MenuStat
 import { BreadCrumbForm } from 'Bread_Crumbs/src/controllers/reducers/common/BreadCrumbForm';
 import { Map } from 'Bread_Crumbs/src/controllers/reducers/common/Map';
 import { BreadCrumbReducer } from 'Bread_Crumbs/src/controllers/reducers/common/BreadCrumbReducer';
+import { MapMarker } from 'Bread_Crumbs/src/controllers/reducers/common/MapMarker';
 
 // combine all reducers
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   menu: MenuState,
   breadCrumbs: BreadCrumbForm,
   mapChange: Map,
+  mapMarker: MapMarker,
   dbCrumbs: BreadCrumbReducer,
 });

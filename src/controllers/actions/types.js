@@ -18,3 +18,6 @@ export const BREAD_CRUMB_UPDATED = 'bread_crumb_updated';
 
 // map
 export const MAP_MOVE = 'map_move';
+export const MAP_MARKER_FOCUS = 'map_marker_focus';
+export const MAP_MARKER_BLUR = 'map_marker_blur';
+export const MAP_FOCUS_ON_USER = 'map_focus_on_user';

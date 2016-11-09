@@ -35,16 +35,12 @@ const styles = {
 
 class NearByCrumbListItem extends Component {
 
-  onRowPress() {
-    Actions.viewBreadCrumb({ viewCrumb: this.props.breadCrumb });
-  }
-
   render() {
-    const { breadCrumb } = this.props;
+    const { breadCrumb, onRowPress } = this.props;
     return (
       <View style={ styles.theme }>
         <Section theme={ styles.crumbButton }>
-            <TouchableOpacity onPress={ this.onRowPress.bind(this) } >
+            <TouchableOpacity onPress={ onRowPress } >
               <Text style={ styles.textTheme }>{ breadCrumb.title }</Text>
           </TouchableOpacity>
         </Section>

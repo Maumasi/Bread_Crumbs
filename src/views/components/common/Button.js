@@ -10,9 +10,9 @@ const Button = (props) => {
   const { onPress, buttonTitle, theme, textTheme } = props;
 
   return (
-    <View style={ theme }>
+    <View style={ [loginButton, theme] }>
     <TouchableOpacity
-      style={ [boxShadow, loginButton] }
+      style={ [boxShadow] }
       onPress={ onPress }
     >
       <Text style={ [loginText, textTheme] }>{ buttonTitle }</Text>
