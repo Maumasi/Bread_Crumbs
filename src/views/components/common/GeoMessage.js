@@ -32,8 +32,6 @@ const styles = {
 
   button: {
     padding: 10,
-    borderColor: 'blue',
-    borderWidth: 1,
     flex: 6,
     alignItems: 'center',
     borderRadius: 50,
@@ -43,11 +41,29 @@ const styles = {
     color: 'blue',
   },
 
+  addText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+
+  closeText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+
   buttonSection: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 20,
     paddingHorizontal: 20,
+  },
+
+  closeButton: {
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+  },
+
+  addButton: {
+    backgroundColor: 'rgba(0, 0, 0, 0.25)',
   },
 };
 
@@ -66,16 +82,16 @@ const GeoMessage = (props) => {
       </Section>
 
       <Section theme={ styles.buttonSection } >
-        <TouchableOpacity style={ styles.button } onPress={ onCloseCrumb } >
-          <Text style={ styles.buttonText } >
+        <TouchableOpacity style={ [styles.button, styles.closeButton] } onPress={ onCloseCrumb } >
+          <Text style={ [styles.buttonText, styles.closeText] } >
             Close
           </Text>
         </TouchableOpacity>
 
         <View style={{ flex: 1 }}/>
 
-        <TouchableOpacity style={ styles.button } onPress={ onAddCrumb } >
-          <Text style={ styles.buttonText } >
+        <TouchableOpacity style={ [styles.button, styles.addButton] } onPress={ onAddCrumb } >
+          <Text style={ [styles.buttonText, styles.addText] } >
             Add to Favs
           </Text>
         </TouchableOpacity>

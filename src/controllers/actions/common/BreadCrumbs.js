@@ -145,37 +145,72 @@ export const deleteBreadCrumb = ({ uid }) => {
 // bread crumb favs
 
 // create a fav
-export const createAFav = ({
-  title,
-  message,
-  discoverable,
-  lat,
-  lng,
-  createdAt,
-  userId,
-}) => {
-  return (dispatch) => {
+export const createAFav = (fav) => {
+
+  const {
+    title,
+    message,
+    discoverable,
+    lat,
+    lng,
+    createdAt,
+    userId,
+  } = fav;
+  return () => {
     const { currentUser } = firebase.auth();
-    firebase.database().ref(`/users/${currentUser.uid}/favs`)
-      .push({
-        title,
-        message,
-        discoverable,
-        lat,
-        lng,
-        createdAt,
-        userId,
-      })
-    .then(() => {
-      console.log('saved a fav');
-      // dispatch({ type: FAV_CREATED });
-      // Actions.mapArea({ type: 'reset' });
-    })
-    .catch(() => {
-      console.log('failed to save');
-    });
+
+    firebase.database().ref(`/users/${currentUser.uid}/favs/`)
+    .orderByChild('userId')
+    .startAt(userId)
+    .endAt(userId)
+      .once('value', (userFavRepo) => {
+
+        // if (userFavRepo.val()) {
+        let crumb;
+        let favItem;
+        let favExist;
+        for (crumb in userFavRepo.val()) {
+          if (crumb) {
+            console.log(crumb);
+            favItem = userFavRepo.val()[crumb];
+
+            const creatorId = userFavRepo.val()[crumb] ? favItem.userId : null;
+            const createTime = userFavRepo.val()[crumb] ? favItem.createdAt : null;
+            favExist = ((createTime === createdAt) && (creatorId === userId));
+
+            console.log(favExist);
+            console.log(favItem);
+          } // child if
+        } // for in
+        // } // parent if
+
+        if (favExist) {
+          console.log('fav already exists');
+        } else {
+
+          console.log('make a fav');
+          firebase.database().ref(`/users/${currentUser.uid}/favs`)
+            .push({
+              title,
+              message,
+              discoverable,
+              lat,
+              lng,
+              createdAt,
+              userId,
+            })
+          .then(() => {
+            console.log('saved a fav');
+            // dispatch({ type: FAV_CREATED });
+            // Actions.mapArea({ type: 'reset' });
+          })
+          .catch(() => {
+            console.log('failed to save');
+          });
+        } // child if
+      });
   };
-};
+}; // func
 
 
 // select favorited bread crumbs

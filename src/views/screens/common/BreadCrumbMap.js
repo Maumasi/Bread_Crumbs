@@ -83,11 +83,11 @@ class BreadCrumbMap extends Component {
       title,
       message,
       show,
-      discoverable,
-      lat,
-      lng,
-      createdAt,
-      userId,
+      // discoverable,
+      // lat,
+      // lng,
+      // createdAt,
+      // userId,
     } = this.props.mapMarker;
 
     console.log(this.props.mapMarker);
@@ -99,15 +99,16 @@ class BreadCrumbMap extends Component {
           onCloseCrumb={ () => this.props.mapMarkerBlur() }
           onAddCrumb={ () => {
             console.log('add to favs');
-            this.props.createAFav({
-              title,
-              message,
-              discoverable,
-              lat,
-              lng,
-              createdAt,
-              userId,
-            });
+            this.props.createAFav(this.props.mapMarker);
+            // this.props.createAFav({
+            //   title,
+            //   message,
+            //   discoverable,
+            //   lat,
+            //   lng,
+            //   createdAt,
+            //   userId,
+            // });
 
           }}
         />
