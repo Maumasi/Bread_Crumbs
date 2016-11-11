@@ -1,0 +1,55 @@
+{
+  "breadCrumbs" : {
+    "-KWIepA75jIMFR0uVSMZ" : {
+      "createdAt" : "2016-11-11T13:54:46.120Z",
+      "discoverable" : false,
+      "lat" : 37.785834,
+      "lng" : -122.406417,
+      "message" : "For those that find this, I left a surprise somewhere on this corner. If you find it keep the fun going!  Leave whatever you might have in your pocket for the next person.",
+      "title" : "Surprise near by!",
+      "userId" : "mBKsvJHxR8QhTwMvzioVL85jHdD3"
+    },
+    "-KWJ-w6YDXa_pcK9x7RN" : {
+      "createdAt" : "2016-11-11T15:31:22.515Z",
+      "discoverable" : false,
+      "lat" : 37.785834,
+      "lng" : -122.406417,
+      "message" : "Take this road to avoid most rush hour traffic",
+      "title" : "Avoid rush-hour traffic this way",
+      "userId" : "mBKsvJHxR8QhTwMvzioVL85jHdD3"
+    },
+    "-KWJ0DzrbCMqMUK_FIfu" : {
+      "createdAt" : "2016-11-11T15:32:39.845Z",
+      "discoverable" : false,
+      "lat" : 37.785834,
+      "lng" : -122.406417,
+      "message" : "",
+      "title" : "Speed trap ahead",
+      "userId" : "mBKsvJHxR8QhTwMvzioVL85jHdD3"
+    },
+    "-KWJ0k8h9RaSyN5pV_gU" : {
+      "createdAt" : "2016-11-11T15:34:55.631Z",
+      "discoverable" : false,
+      "lat" : 37.785834,
+      "lng" : -122.406417,
+      "message" : "",
+      "title" : "Way point hunt, Point 1: Free T-shirts",
+      "userId" : "mBKsvJHxR8QhTwMvzioVL85jHdD3"
+    }
+  },
+  "users" : {
+    "mBKsvJHxR8QhTwMvzioVL85jHdD3" : {
+      "favs" : {
+        "-KWIzN3s-8q-6sk6TfWp" : {
+          "createdAt" : "2016-11-11T15:24:20.607Z",
+          "discoverable" : false,
+          "lat" : 37.785834,
+          "lng" : -122.406417,
+          "message" : "Five-Guys' have the best burgers eva!",
+          "title" : "Best burgers in Orlando!",
+          "userId" : "mBKsvJHxR8QhTwMvzioVL85jHdD3"
+        }
+      }
+    }
+  }
+}
