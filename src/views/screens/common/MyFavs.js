@@ -91,7 +91,7 @@ class MyFavs extends Component {
         <Header
           theme={ [styles.headerTheme] }
           textTheme={ styles.textTitle }
-          title={ 'My Bread Crumbs' } />
+          title={ 'My Favs' } />
 
         <ListView
         enableEmptySections
